@@ -20,7 +20,7 @@ class RegisterController(val userRepository: UserRepository) {
                 return JsonResponse().returnJsonResponse("409", "이미 해당 아이디로 가입된 사용자가 존재합니다.", Unit)
             }
         } else {
-            return JsonResponse().returnJsonResponse("404", "검증 오류가 발생하였습니다.", Unit)
+            return JsonResponse().returnJsonResponse("400", "검증 오류가 발생하였습니다.", Unit)
         }
     }
 

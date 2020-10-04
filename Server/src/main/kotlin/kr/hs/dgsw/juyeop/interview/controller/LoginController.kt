@@ -22,7 +22,7 @@ class LoginController(val userRepository: UserRepository) {
                 return JsonResponse().returnJsonResponse("401", "아이디 또는 비밀번호가 일치하지 않습니다.", Unit)
             }
         } else {
-            return JsonResponse().returnJsonResponse("404", "검증 오류가 발생하였습니다.", Unit)
+            return JsonResponse().returnJsonResponse("400", "검증 오류가 발생하였습니다.", Unit)
         }
     }
 
