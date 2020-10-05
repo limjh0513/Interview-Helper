@@ -66,9 +66,9 @@ class AuthController(val authRepository: AuthRepository) {
     fun checkOverapping(id: String): Boolean {
         try {
             val target = authRepository.findById(id).get()
-            return false;
+            return false
         } catch (e : NoSuchElementException) {
-            return true;
+            return true
         }
     }
 }
