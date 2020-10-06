@@ -1,22 +1,17 @@
 package kr.hs.dgsw.juyeop.interview.controller
 
+import kr.hs.dgsw.juyeop.interview.model.db.AuthEntity
 import kr.hs.dgsw.juyeop.interview.model.db.SolutionEntity
+import kr.hs.dgsw.juyeop.interview.model.request.SolutionRequest
 import kr.hs.dgsw.juyeop.interview.model.response.JsonResponse
+import kr.hs.dgsw.juyeop.interview.repository.AuthRepository
 import kr.hs.dgsw.juyeop.interview.repository.SolutionRepository
 import org.springframework.web.bind.annotation.*
 import java.lang.IndexOutOfBoundsException
 
-/**
- * 1. 특정 사용자의 전체 답변 목록 조회 (getAllSolutionByUserId)
- * 2. 특정 사용자의 답변 목록 조회 (getSolutionByUserId)
- * 3. 특정 질문에 대한 답변 생성 (createSolution)
- * 4. 특정 질문에 대한 답변 수정 (updateSolution)
- * 5. 특정 질문에 대한 답변 삭제 (deleteSolution)
- */
-
 @RestController
 @RequestMapping("/solution")
-class SolutionController(val solutionRepository: SolutionRepository) {
+class SolutionController(val solutionRepository: SolutionRepository, val authRepository: AuthRepository) {
 
     @RequestMapping(path = ["/{userId}"], method = [RequestMethod.GET])
     fun getAllSolutionByUserId(@PathVariable("userId") userId: String): HashMap<String, Any> {
@@ -49,7 +44,17 @@ class SolutionController(val solutionRepository: SolutionRepository) {
     @PostMapping
     fun createSolution(@RequestBody solutionEntity: SolutionEntity): HashMap<String, Any> {
         if (checkEmpty(solutionEntity)) {
+            val targetList = authRepository.findAll()
+            val userAuth: AuthEntity
+
+            userAuth = targetList.filter { target ->
+                target.id.equals(solutionEntity.user_id)
+            }[0]
+            userAuth.solution = (userAuth.solution!! + 1)
+
+            authRepository.save(userAuth)
             solutionRepository.save(solutionEntity)
+
             return JsonResponse().returnJsonResponse("200", "면접 질문에 대한 사용자의 답변을 정상적으로 추가하였습니다.", Unit)
         } else {
             return JsonResponse().returnJsonResponse("400", "검증 오류가 발생하였습니다.", Unit)
@@ -57,23 +62,19 @@ class SolutionController(val solutionRepository: SolutionRepository) {
     }
 
     @RequestMapping(path = ["/{idx}"], method = [RequestMethod.PUT])
-    fun updateSolution(@RequestBody solutionEntity: SolutionEntity, @PathVariable("idx") idx: Int): HashMap<String, Any> {
-        if (checkEmpty(solutionEntity)) {
-            val target = checkExist(idx)
-            if (!target.user_id.isNullOrEmpty()) {
-                with(target) {
-                    solution_text = solutionEntity.solution_text
-                    solution_audio = solutionEntity.solution_audio
-                    solution_video = solutionEntity.solution_video
+    fun updateSolution(@RequestBody solutionRequest: SolutionRequest, @PathVariable("idx") idx: Int): HashMap<String, Any> {
+        val target = checkExist(idx)
+        if (!target.user_id.isNullOrEmpty()) {
+            with(target) {
+                solution_text = solutionRequest.solution_text
+                solution_audio = solutionRequest.solution_audio
+                solution_video = solutionRequest.solution_video
 
-                    solutionRepository.save(target)
-                    return JsonResponse().returnJsonResponse("200", "면접 질문에 대한 사용자의 답변을 정상적으로 수정하였습니다.", Unit)
-                }
-            } else {
-                return JsonResponse().returnJsonResponse("404", "존재하지 않는 답변입니다.", Unit)
+                solutionRepository.save(target)
+                return JsonResponse().returnJsonResponse("200", "면접 질문에 대한 사용자의 답변을 정상적으로 수정하였습니다.", Unit)
             }
         } else {
-            return JsonResponse().returnJsonResponse("400", "검증 오류가 발생하였습니다.", Unit)
+            return JsonResponse().returnJsonResponse("404", "존재하지 않는 답변입니다.", Unit)
         }
     }
 
@@ -81,7 +82,17 @@ class SolutionController(val solutionRepository: SolutionRepository) {
     fun deleteSolution(@PathVariable("idx") idx: Int): HashMap<String, Any> {
         val target = checkExist(idx)
         if (!target.user_id.isNullOrEmpty()) {
+            val targetList = authRepository.findAll()
+            val userAuth: AuthEntity
+
+            userAuth = targetList.filter {
+                it.id.equals(target.user_id)
+            }[0]
+            userAuth.solution = (userAuth.solution!! - 1)
+
+            authRepository.save(userAuth)
             solutionRepository.deleteById(idx)
+
             return JsonResponse().returnJsonResponse("200", "면접 질문에 대한 사용자의 답변을 정상적으로 삭제하였습니다.", Unit)
         } else {
             return JsonResponse().returnJsonResponse("404", "존재하지 않는 답변입니다.", Unit)
