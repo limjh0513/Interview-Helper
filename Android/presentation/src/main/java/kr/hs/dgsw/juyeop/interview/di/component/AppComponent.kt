@@ -3,11 +3,10 @@ package kr.hs.dgsw.juyeop.interview.di.component
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import kr.hs.dgsw.juyeop.interview.InterviewApplication
-import kr.hs.dgsw.juyeop.interview.di.module.ActivityBindingModule
-import kr.hs.dgsw.juyeop.interview.di.module.AppModule
-import kr.hs.dgsw.juyeop.interview.di.module.FragmentBindingModule
+import kr.hs.dgsw.juyeop.interview.di.module.*
 import javax.inject.Singleton
 
 @Singleton
@@ -15,18 +14,21 @@ import javax.inject.Singleton
     modules = [
         ActivityBindingModule::class,
         AppModule::class,
-        FragmentBindingModule::class
+        FragmentBindingModule::class,
+        NetworkModule::class,
+        RemoteModule::class,
+        RepositoryModule::class,
+        ServiceBindingModule::class,
+        AndroidInjectionModule::class
     ]
 )
-
-interface AppComponent : AndroidInjector<InterviewApplication>{
+interface AppComponent : AndroidInjector<InterviewApplication> {
 
     @Component.Builder
     interface Builder {
 
         @BindsInstance
         fun application(application: Application): Builder
-
         fun build(): AppComponent
     }
 }

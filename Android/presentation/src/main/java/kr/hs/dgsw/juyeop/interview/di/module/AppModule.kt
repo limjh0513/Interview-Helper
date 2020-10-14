@@ -8,7 +8,7 @@ import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Singleton
 
 @Module
-abstract class AppModule {
+class AppModule {
 
     @Singleton
     @Provides
