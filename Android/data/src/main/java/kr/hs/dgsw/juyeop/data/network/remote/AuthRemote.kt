@@ -1,0 +1,18 @@
+package kr.hs.dgsw.juyeop.data.network.remote
+
+import io.reactivex.Completable
+import kr.hs.dgsw.juyeop.data.base.BaseRemote
+import kr.hs.dgsw.juyeop.data.network.service.AuthService
+import kr.hs.dgsw.juyeop.domain.request.LoginRequest
+import kr.hs.dgsw.juyeop.domain.request.RegisterRequest
+
+class AuthRemote(override val service: AuthService) : BaseRemote<AuthService>() {
+
+    fun postLogin(loginRequest: LoginRequest): Completable {
+        return service.postLogin(loginRequest)
+    }
+
+    fun postRegister(registerRequest: RegisterRequest): Completable {
+        return service.postRegister(registerRequest)
+    }
+}

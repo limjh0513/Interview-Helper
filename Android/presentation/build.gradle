@@ -47,10 +47,9 @@ dependencies {
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
-    kapt "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
+    kapt  "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
 
     // Retrofit2
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
