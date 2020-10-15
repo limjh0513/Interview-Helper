@@ -1,11 +1,10 @@
 package kr.hs.dgsw.juyeop.interview.controller
 
+import kr.hs.dgsw.juyeop.interview.exception.BadRequestException
 import kr.hs.dgsw.juyeop.interview.model.response.JsonResponse
 import org.apache.commons.io.FilenameUtils
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestPart
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import java.io.File
 import java.io.IOException
@@ -29,7 +28,7 @@ class UploadController {
 
             video.transferTo(videoDestination)
             return JsonResponse().returnJsonResponse("200", "비디오 업로드를 정상적으로 수행하였습니다.", freshVideoName)
-        } else return JsonResponse().returnJsonResponse("400", "검증 오류가 발생하였습니다.", Unit)
+        } else throw BadRequestException("검증 오류가 발생하였습니다.")
     }
 
     @PostMapping
@@ -47,10 +46,16 @@ class UploadController {
 
             audio.transferTo(audioDestination)
             return JsonResponse().returnJsonResponse("200", "오디오 업로드를 정상적으로 수행하였습니다.", freshAudioName)
-        } else return JsonResponse().returnJsonResponse("400", "검증 오류가 발생하였습니다.", Unit)
+        } else throw BadRequestException("검증 오류가 발생하였습니다.")
     }
 
     fun checkFileEmpty(file: MultipartFile): Boolean {
         return !file.isEmpty
+    }
+
+    @ExceptionHandler(BadRequestException::class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    fun handelr(error: BadRequestException): HashMap<String, Any> {
+        return JsonResponse().returnJsonResponse("400", error.message.toString(), Unit)
     }
 }

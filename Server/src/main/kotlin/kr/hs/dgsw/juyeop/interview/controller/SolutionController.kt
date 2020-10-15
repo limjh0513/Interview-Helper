@@ -1,11 +1,14 @@
 package kr.hs.dgsw.juyeop.interview.controller
 
+import kr.hs.dgsw.juyeop.interview.exception.BadRequestException
+import kr.hs.dgsw.juyeop.interview.exception.NotFoundException
 import kr.hs.dgsw.juyeop.interview.model.db.AuthEntity
 import kr.hs.dgsw.juyeop.interview.model.db.SolutionEntity
 import kr.hs.dgsw.juyeop.interview.model.request.SolutionRequest
 import kr.hs.dgsw.juyeop.interview.model.response.JsonResponse
 import kr.hs.dgsw.juyeop.interview.repository.AuthRepository
 import kr.hs.dgsw.juyeop.interview.repository.SolutionRepository
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import java.lang.IndexOutOfBoundsException
 
@@ -22,7 +25,7 @@ class SolutionController(val solutionRepository: SolutionRepository, val authRep
             target.user_id.equals(userId)
         }
 
-        if (userSolutionList.isNullOrEmpty()) return JsonResponse().returnJsonResponse("404", "전체 면접 질문에 대한 사용자의 답변이 존재하지 않습니다.", Unit)
+        if (userSolutionList.isNullOrEmpty()) throw NotFoundException("전체 면접 질문에 대한 사용자의 답변이 존재하지 않습니다.")
         else return JsonResponse().returnJsonResponse("200", "전체 면접 질문에 대한 사용자의 답변 조회를 정상적으로 수행하였습니다.", userSolutionList)
     }
 
@@ -37,7 +40,7 @@ class SolutionController(val solutionRepository: SolutionRepository, val authRep
             }[0]
             return JsonResponse().returnJsonResponse("200", "면접 질문에 대한 사용자의 답변 조회를 정상적으로 수행하였습니다.", userSolution)
         } catch (e: IndexOutOfBoundsException) {
-            return JsonResponse().returnJsonResponse("404", "면접 질문에 대한 사용자의 답변이 존재하지 않습니다.", Unit)
+            throw NotFoundException("면접 질문에 대한 사용자의 답변이 존재하지 않습니다.")
         }
     }
 
@@ -57,7 +60,7 @@ class SolutionController(val solutionRepository: SolutionRepository, val authRep
 
             return JsonResponse().returnJsonResponse("200", "면접 질문에 대한 사용자의 답변을 정상적으로 추가하였습니다.", Unit)
         } else {
-            return JsonResponse().returnJsonResponse("400", "검증 오류가 발생하였습니다.", Unit)
+            throw BadRequestException("검증 오류가 발생하였습니다.")
         }
     }
 
@@ -74,7 +77,7 @@ class SolutionController(val solutionRepository: SolutionRepository, val authRep
                 return JsonResponse().returnJsonResponse("200", "면접 질문에 대한 사용자의 답변을 정상적으로 수정하였습니다.", Unit)
             }
         } else {
-            return JsonResponse().returnJsonResponse("404", "존재하지 않는 답변입니다.", Unit)
+            throw NotFoundException("존재하지 않는 답변입니다.")
         }
     }
 
@@ -95,7 +98,7 @@ class SolutionController(val solutionRepository: SolutionRepository, val authRep
 
             return JsonResponse().returnJsonResponse("200", "면접 질문에 대한 사용자의 답변을 정상적으로 삭제하였습니다.", Unit)
         } else {
-            return JsonResponse().returnJsonResponse("404", "존재하지 않는 답변입니다.", Unit)
+            throw NotFoundException("존재하지 않는 답변입니다.")
         }
     }
 
@@ -111,5 +114,16 @@ class SolutionController(val solutionRepository: SolutionRepository, val authRep
         } catch (e: NoSuchElementException) {
             return SolutionEntity()
         }
+    }
+
+    @ExceptionHandler(BadRequestException::class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    fun handelr(error: BadRequestException): java.util.HashMap<String, Any> {
+        return JsonResponse().returnJsonResponse("400", error.message.toString(), Unit)
+    }
+    @ExceptionHandler(NotFoundException::class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    fun handler(error: NotFoundException): HashMap<String, Any> {
+        return JsonResponse().returnJsonResponse("404", error.message.toString(), Unit)
     }
 }
