@@ -1,4 +1,4 @@
-package kr.hs.dgsw.juyeop.domain.usecase
+package kr.hs.dgsw.juyeop.domain.usecase.auth
 
 import io.reactivex.Completable
 import kr.hs.dgsw.juyeop.domain.base.ParamUseCase

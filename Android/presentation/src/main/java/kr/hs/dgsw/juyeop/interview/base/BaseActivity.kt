@@ -3,11 +3,9 @@ package kr.hs.dgsw.juyeop.interview.base
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
 import kr.hs.dgsw.juyeop.interview.BR
 import kr.hs.dgsw.juyeop.interview.R
-import kr.hs.dgsw.juyeop.interview.di.component.DaggerAppComponent
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 import java.util.*

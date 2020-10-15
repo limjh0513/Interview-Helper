@@ -1,4 +1,4 @@
-package kr.hs.dgsw.juyeop.interview
+package kr.hs.dgsw.juyeop.interview.widget
 
 import android.app.Application
 import dagger.android.AndroidInjector

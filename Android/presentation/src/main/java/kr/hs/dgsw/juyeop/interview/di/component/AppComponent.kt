@@ -5,7 +5,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
-import kr.hs.dgsw.juyeop.interview.InterviewApplication
+import kr.hs.dgsw.juyeop.interview.widget.InterviewApplication
 import kr.hs.dgsw.juyeop.interview.di.module.*
 import javax.inject.Singleton
 
