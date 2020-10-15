@@ -4,6 +4,7 @@ import io.reactivex.Single
 import kr.hs.dgsw.juyeop.domain.base.ParamUseCase
 import kr.hs.dgsw.juyeop.domain.repository.UploadRepository
 import okhttp3.MultipartBody
+import java.io.File
 import javax.inject.Inject
 
 class UploadAudioUseCase @Inject constructor(
@@ -15,6 +16,6 @@ class UploadAudioUseCase @Inject constructor(
     }
 
     data class Params(
-        val audio: MultipartBody
+        val audio: File
     )
 }
