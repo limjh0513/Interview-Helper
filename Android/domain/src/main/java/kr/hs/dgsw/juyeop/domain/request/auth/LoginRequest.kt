@@ -1,7 +1,6 @@
-package kr.hs.dgsw.juyeop.domain.request
+package kr.hs.dgsw.juyeop.domain.request.auth
 
 import kr.hs.dgsw.juyeop.domain.util.Utils
-import java.security.NoSuchAlgorithmException
 
 class LoginRequest(
     var id: String,

@@ -3,7 +3,7 @@ package kr.hs.dgsw.juyeop.domain.usecase.auth
 import io.reactivex.Completable
 import kr.hs.dgsw.juyeop.domain.base.ParamUseCase
 import kr.hs.dgsw.juyeop.domain.repository.AuthRepository
-import kr.hs.dgsw.juyeop.domain.request.RegisterRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.RegisterRequest
 import javax.inject.Inject
 
 class PostRegisterUseCase @Inject constructor(

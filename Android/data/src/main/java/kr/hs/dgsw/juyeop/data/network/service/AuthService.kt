@@ -4,8 +4,8 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import kr.hs.dgsw.juyeop.data.entity.AuthData
 import kr.hs.dgsw.juyeop.data.util.Response
-import kr.hs.dgsw.juyeop.domain.request.LoginRequest
-import kr.hs.dgsw.juyeop.domain.request.RegisterRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.LoginRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.RegisterRequest
 import retrofit2.http.Body
 import retrofit2.http.POST
 

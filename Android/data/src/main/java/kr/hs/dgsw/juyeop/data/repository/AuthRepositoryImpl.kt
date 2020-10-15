@@ -6,8 +6,8 @@ import kr.hs.dgsw.juyeop.data.datasource.AuthDataSource
 import kr.hs.dgsw.juyeop.data.mapper.toEntity
 import kr.hs.dgsw.juyeop.domain.entity.Auth
 import kr.hs.dgsw.juyeop.domain.repository.AuthRepository
-import kr.hs.dgsw.juyeop.domain.request.LoginRequest
-import kr.hs.dgsw.juyeop.domain.request.RegisterRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.LoginRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.RegisterRequest
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(

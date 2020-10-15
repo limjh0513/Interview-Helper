@@ -5,8 +5,8 @@ import io.reactivex.Single
 import kr.hs.dgsw.juyeop.data.base.BaseRemote
 import kr.hs.dgsw.juyeop.data.entity.AuthData
 import kr.hs.dgsw.juyeop.data.network.service.AuthService
-import kr.hs.dgsw.juyeop.domain.request.LoginRequest
-import kr.hs.dgsw.juyeop.domain.request.RegisterRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.LoginRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.RegisterRequest
 
 class AuthRemote(override val service: AuthService) : BaseRemote<AuthService>() {
 

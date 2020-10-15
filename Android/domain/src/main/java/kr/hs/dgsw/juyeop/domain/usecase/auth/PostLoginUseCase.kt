@@ -4,7 +4,7 @@ import io.reactivex.Single
 import kr.hs.dgsw.juyeop.domain.base.ParamUseCase
 import kr.hs.dgsw.juyeop.domain.entity.Auth
 import kr.hs.dgsw.juyeop.domain.repository.AuthRepository
-import kr.hs.dgsw.juyeop.domain.request.LoginRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.LoginRequest
 import javax.inject.Inject
 
 class PostLoginUseCase @Inject constructor(

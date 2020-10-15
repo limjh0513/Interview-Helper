@@ -5,8 +5,8 @@ import io.reactivex.Single
 import kr.hs.dgsw.juyeop.data.base.BaseDataSource
 import kr.hs.dgsw.juyeop.data.entity.AuthData
 import kr.hs.dgsw.juyeop.data.network.remote.AuthRemote
-import kr.hs.dgsw.juyeop.domain.request.LoginRequest
-import kr.hs.dgsw.juyeop.domain.request.RegisterRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.LoginRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.RegisterRequest
 import javax.inject.Inject
 
 class AuthDataSource @Inject constructor(

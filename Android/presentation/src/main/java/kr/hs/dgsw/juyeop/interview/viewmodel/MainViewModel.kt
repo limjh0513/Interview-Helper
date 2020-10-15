@@ -5,14 +5,18 @@ import io.reactivex.observers.DisposableSingleObserver
 import kr.hs.dgsw.juyeop.domain.entity.Advice
 import kr.hs.dgsw.juyeop.domain.entity.Auth
 import kr.hs.dgsw.juyeop.domain.entity.Question
-import kr.hs.dgsw.juyeop.domain.request.LoginRequest
-import kr.hs.dgsw.juyeop.domain.request.RegisterRequest
+import kr.hs.dgsw.juyeop.domain.entity.Solution
+import kr.hs.dgsw.juyeop.domain.request.auth.LoginRequest
+import kr.hs.dgsw.juyeop.domain.request.auth.RegisterRequest
+import kr.hs.dgsw.juyeop.domain.request.solution.PostSolutionReqeust
+import kr.hs.dgsw.juyeop.domain.request.solution.PutSolutionReqeust
 import kr.hs.dgsw.juyeop.domain.usecase.advice.GetAdviceUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.advice.GetAllAdviceUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.auth.PostLoginUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.auth.PostRegisterUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.question.GetAllQuestionUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.question.GetQuestionUseCase
+import kr.hs.dgsw.juyeop.domain.usecase.solution.*
 import kr.hs.dgsw.juyeop.interview.base.BaseViewModel
 
 class MainViewModel(
@@ -21,7 +25,12 @@ class MainViewModel(
     private val getAllQuestionUseCase: GetAllQuestionUseCase,
     private val getQuestionUseCase: GetQuestionUseCase,
     private val getAllAdviceUseCase: GetAllAdviceUseCase,
-    private val getAdviceUseCase: GetAdviceUseCase
+    private val getAdviceUseCase: GetAdviceUseCase,
+    private val getAllSolutionUseCase: GetAllSolutionUseCase,
+    private val getSolutionUseCase: GetSolutionUseCase,
+    private val postSolutionUseCase: PostSolutionUseCase,
+    private val putSolutionUseCase: PutSolutionUseCase,
+    private val deleteSolutionUseCase: DeleteSolutionUseCase
 ): BaseViewModel() {
 
     init {
@@ -33,6 +42,12 @@ class MainViewModel(
 
         getAllAdvice()
         getAdvice()
+
+        getAllSolution()
+        getSolution()
+        postSolution()
+        putSolution()
+        deleteSolution()
     }
 
     fun postLogin() {
@@ -47,7 +62,9 @@ class MainViewModel(
             })
     }
     fun postRegister() {
-        addDisposable(postRegisterUseCase.buildUseCaseObservable(PostRegisterUseCase.Params(RegisterRequest("wnduq6392", "wnduq7114", "김주엽", 0))),
+        addDisposable(postRegisterUseCase.buildUseCaseObservable(PostRegisterUseCase.Params(
+            RegisterRequest("wnduq6392", "wnduq7114", "김주엽", 0)
+        )),
             object : DisposableCompletableObserver() {
                 override fun onComplete() {
 
@@ -102,5 +119,61 @@ class MainViewModel(
                 e.printStackTrace()
             }
         })
+    }
+
+    fun getAllSolution() {
+        addDisposable(getAllSolutionUseCase.buildUseCaseObservable(GetAllSolutionUseCase.Params("kjy13299")),
+            object : DisposableSingleObserver<List<Solution>>() {
+                override fun onSuccess(t: List<Solution>) {
+
+                }
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
+                }
+            })
+    }
+    fun getSolution() {
+        addDisposable(getSolutionUseCase.buildUseCaseObservable(GetSolutionUseCase.Params(1, "kjy13299")),
+            object : DisposableSingleObserver<Solution>() {
+                override fun onSuccess(t: Solution) {
+
+                }
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
+                }
+            })
+    }
+    fun postSolution() {
+        addDisposable(postSolutionUseCase.buildUseCaseObservable(PostSolutionUseCase.Params(PostSolutionReqeust(null, "kjy13299", 4, null, null, null, "2020-10-15 12:15:50"))),
+            object : DisposableCompletableObserver() {
+                override fun onComplete() {
+
+                }
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
+                }
+            })
+    }
+    fun putSolution() {
+        addDisposable(putSolutionUseCase.buildUseCaseObservable(PutSolutionUseCase.Params(9, PutSolutionReqeust("먹고 살기 위해서", null, null))),
+        object : DisposableCompletableObserver() {
+            override fun onComplete() {
+
+            }
+            override fun onError(e: Throwable) {
+                e.printStackTrace()
+            }
+        })
+    }
+    fun deleteSolution() {
+        addDisposable(deleteSolutionUseCase.buildUseCaseObservable(DeleteSolutionUseCase.Params(9)),
+            object : DisposableCompletableObserver() {
+                override fun onComplete() {
+
+                }
+                override fun onError(e: Throwable) {
+                    e.printStackTrace()
+                }
+            })
     }
 }
