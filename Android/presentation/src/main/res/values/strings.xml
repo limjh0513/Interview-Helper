@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Interview</string>
+    <string name="app_name2">Interview Helper</string>
+
+    <string name="text_signin">로그인</string>
+    <string name="text_signup"><u>회원가입</u></string>
 </resources>

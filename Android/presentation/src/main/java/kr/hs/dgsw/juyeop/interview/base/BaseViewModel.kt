@@ -15,10 +15,10 @@ import kr.hs.dgsw.juyeop.interview.widget.SingleLiveEvent
 
 open class BaseViewModel : ViewModel() {
 
-    private val disposable = CompositeDisposable()
+    val disposable = CompositeDisposable()
 
-    protected val isLoading = MutableLiveData(false)
-    protected val onErrorEvent = SingleLiveEvent<Throwable>()
+    val isLoading = MutableLiveData(false)
+    val onErrorEvent = SingleLiveEvent<Throwable>()
 
     fun addDisposable(single: Single<*>, observer: DisposableSingleObserver<*>) {
         disposable.add(single.subscribeOn(Schedulers.io())
