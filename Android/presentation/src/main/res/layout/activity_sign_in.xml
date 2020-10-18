@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="kr.hs.dgsw.juyeop.interview.viewmodel.SignInViewModel" />
+            type="kr.hs.dgsw.juyeop.interview.viewmodel.activity.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/img_background"
-        tools:context=".view.SignInActivity">
+        tools:context=".view.activity.SignInActivity">
 
         <LinearLayout
             android:layout_width="match_parent"

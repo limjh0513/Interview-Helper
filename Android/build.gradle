@@ -16,6 +16,8 @@ buildscript {
         lifeCycleVersion = '2.2.0'
 
         roomVersion = "2.2.5"
+
+        navVersion = "2.3.0"
     }
     repositories {
         google()

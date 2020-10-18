@@ -7,14 +7,14 @@
     <data>
         <variable
             name="viewModel"
-            type="kr.hs.dgsw.juyeop.interview.viewmodel.SignUpViewModel" />
+            type="kr.hs.dgsw.juyeop.interview.viewmodel.activity.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.SignUpActivity">
+        tools:context=".view.activity.SignUpActivity">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -55,11 +55,11 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
                         android:hint="비밀번호"
                         android:text="@={viewModel.pw}"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
+                        android:fontFamily="@font/regular"
                         android:inputType="textPassword"
                         tools:ignore="HardcodedText" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -75,11 +75,11 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
                         android:hint="아이디"
                         android:text="@={viewModel.id}"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
+                        android:fontFamily="@font/regular"
                         tools:ignore="HardcodedText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,12 +93,11 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
                         android:hint="이름"
                         android:text="@={viewModel.name}"
                         android:textColor="@android:color/black"
                         android:textSize="15sp"
-                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/regular"
                         tools:ignore="HardcodedText" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>

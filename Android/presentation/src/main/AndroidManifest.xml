@@ -15,16 +15,16 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
-        <activity android:name=".view.SplashActivity">
+        <activity android:name=".view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.SignInActivity" />
-        <activity android:name=".view.SignUpActivity" />
-        <activity android:name=".view.SignUpCompleteActivity"/>
-        <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.activity.SignInActivity" />
+        <activity android:name=".view.activity.SignUpActivity" />
+        <activity android:name=".view.activity.SignUpCompleteActivity"/>
+        <activity android:name=".view.activity.MainActivity" />
     </application>
 
 </manifest>
