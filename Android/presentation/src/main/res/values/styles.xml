@@ -6,4 +6,9 @@
 
         <item name="android:statusBarColor">@android:color/white</item>
     </style>
+
+    <style name="tabTheme" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/bold</item>
+    </style>
 </resources>

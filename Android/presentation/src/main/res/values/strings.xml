@@ -17,10 +17,16 @@
     <string name="menu_home">홈</string>
     <string name="menu_question">면접 질문</string>
     <string name="menu_my_info">내 정보</string>
+    
+    <string name="tab_first">비전/목표</string>
+    <string name="tab_second">조직적응력</string>
+    <string name="tab_third">관심사/가치관</string>
+    <string name="tab_fourth">돌발/창의성</string>
+    <string name="tab_fifth">압박질문</string>
+    <string name="tab_sixth">기업/직무 적합도 및 관심도</string>
+    <string name="tab_seventh">대외활동 및 성격</string>
 
     <string name="success_sign_up">회원가입을 정상적으로 수행하였습니다.</string>
 
     <string name="empty_data">정보를 입력해주시기 바랍니다.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
