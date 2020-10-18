@@ -26,8 +26,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
                 shortSnackbar(layout, resources.getString(R.string.empty_data))
             })
             onCompleteEvent.observe(this@SignUpActivity, Observer {
-                startActivityWithFinish(applicationContext, SignInActivity::class.java)
-                shortSnackbar(layout, resources.getString(R.string.success_sign_up))
+                startActivityWithFinish(applicationContext, SignUpCompleteActivity::class.java)
             })
             onErrorEvent.observe(this@SignUpActivity, Observer {
                 shortSnackbar(layout, it.message.toString())

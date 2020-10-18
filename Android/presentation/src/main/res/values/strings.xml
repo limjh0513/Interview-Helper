@@ -11,6 +11,9 @@
     <string name="text_check_data">입력하신 정보가 맞는지\n확인 후, 다음 버튼을 눌러주세요</string>
     <string name="text_next">다음</string>
 
+    <string name="text_sign_up_complete">회원가입을 완료했습니다</string>
+    <string name="text_sign_up_complete2">상단의 버튼을 클릭하여 로그인 하시기 바랍니다</string>
+
     <string name="success_sign_up">회원가입을 정상적으로 수행하였습니다.</string>
 
     <string name="empty_data">정보를 입력해주시기 바랍니다.</string>
