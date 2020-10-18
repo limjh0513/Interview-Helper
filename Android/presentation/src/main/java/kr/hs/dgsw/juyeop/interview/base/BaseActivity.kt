@@ -1,6 +1,7 @@
 package kr.hs.dgsw.juyeop.interview.base
 
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dagger.android.support.DaggerAppCompatActivity
@@ -20,10 +21,14 @@ abstract class BaseActivity<VB: ViewDataBinding, VM: BaseViewModel>: DaggerAppCo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.decorView.systemUiVisibility = 0
 
+        setStatusMode()
         performDataBinding()
         observerViewModel()
+    }
+
+    private fun setStatusMode() {
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }
 
     private fun performDataBinding() {

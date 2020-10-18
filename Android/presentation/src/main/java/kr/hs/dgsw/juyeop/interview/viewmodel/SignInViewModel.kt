@@ -18,20 +18,33 @@ class SignInViewModel(
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
+
+    val onEmptyEvent = SingleLiveEvent<Unit>()
     val onSuccessEvent = SingleLiveEvent<Unit>()
+    val onSignUpEvent = SingleLiveEvent<Unit>()
 
     fun signInEvent() {
-        val loginRequest = LoginRequest(id.value.toString(), pw.value.toString())
+        if (checkEmpty()) {
+            val loginRequest = LoginRequest(id.value.toString(), pw.value.toString())
 
-        addDisposable(postLoginUseCase.buildUseCaseObservable(PostLoginUseCase.Params(loginRequest)),
-        object : DisposableSingleObserver<Auth>() {
-            override fun onSuccess(auth: Auth) {
-                SharedPreferencesManager.setUserId(context,auth.id)
-                onSuccessEvent.call()
-            }
-            override fun onError(e: Throwable) {
-                onErrorEvent.value = e
-            }
-        })
+            addDisposable(postLoginUseCase.buildUseCaseObservable(PostLoginUseCase.Params(loginRequest)),
+                object : DisposableSingleObserver<Auth>() {
+                    override fun onSuccess(auth: Auth) {
+                        SharedPreferencesManager.setUserId(context,auth.id)
+                        onSuccessEvent.call()
+                    }
+                    override fun onError(e: Throwable) {
+                        onErrorEvent.value = e
+                    }
+                })
+        } else onEmptyEvent.call()
+    }
+
+    fun checkEmpty(): Boolean {
+        return !(id.value.isNullOrEmpty() || pw.value.isNullOrEmpty())
+    }
+
+    fun signUpEvent() {
+        onSignUpEvent.call()
     }
 }

@@ -15,9 +15,16 @@ abstract class BaseRemote<SV> {
         }
     }
 
+    protected fun getResponseMessage(): Function<retrofit2.Response<Response<Any>>, String> {
+        return Function { response: retrofit2.Response<Response<Any>> ->
+            checkError(response)
+            response.body()!!.message
+        }
+    }
+
     private fun checkError(response: retrofit2.Response<*>) {
         if (!response.isSuccessful) {
-            val errorBody = JSONObject(response.errorBody().toString())
+            val errorBody = JSONObject(response.errorBody()!!.string())
             throw Throwable(errorBody.getString("message"))
         }
     }

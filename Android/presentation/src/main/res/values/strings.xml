@@ -2,6 +2,16 @@
     <string name="app_name">Interview</string>
     <string name="app_name2">Interview Helper</string>
 
-    <string name="text_signin">로그인</string>
-    <string name="text_signup"><u>회원가입</u></string>
+    <string name="text_sign_in">로그인</string>
+    <string name="text_sign_up"><u>회원가입</u></string>
+
+    <string name="text_input_name">이름을 입력해주세요</string>
+    <string name="text_input_id">아이디를 입력해주세요</string>
+    <string name="text_input_pw">비밀번호를 입력해주세요</string>
+    <string name="text_check_data">입력하신 정보가 맞는지\n확인 후, 다음 버튼을 눌러주세요</string>
+    <string name="text_next">다음</string>
+
+    <string name="success_sign_up">회원가입을 정상적으로 수행하였습니다.</string>
+
+    <string name="empty_data">정보를 입력해주시기 바랍니다.</string>
 </resources>

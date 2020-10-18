@@ -1,6 +1,5 @@
 package kr.hs.dgsw.juyeop.data.datasource
 
-import io.reactivex.Completable
 import io.reactivex.Single
 import kr.hs.dgsw.juyeop.data.base.BaseDataSource
 import kr.hs.dgsw.juyeop.data.entity.AuthData
@@ -16,5 +15,5 @@ class AuthDataSource @Inject constructor(
 
     fun postLogin(loginRequest: LoginRequest): Single<AuthData> = remote.postLogin(loginRequest)
 
-    fun postRegister(registerRequest: RegisterRequest): Completable = remote.postRegister(registerRequest)
+    fun postRegister(registerRequest: RegisterRequest): Single<String> = remote.postRegister(registerRequest)
 }

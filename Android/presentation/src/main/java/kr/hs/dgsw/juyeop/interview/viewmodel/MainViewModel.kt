@@ -62,9 +62,7 @@ class MainViewModel(
             })
     }
     fun postRegister() {
-        addDisposable(postRegisterUseCase.buildUseCaseObservable(PostRegisterUseCase.Params(
-            RegisterRequest("wnduq6392", "wnduq7114", "김주엽", 0)
-        )),
+        addDisposable(postRegisterUseCase.buildUseCaseObservable(PostRegisterUseCase.Params(RegisterRequest("wnduq6392", "wnduq7114", "김주엽", 0))),
             object : DisposableCompletableObserver() {
                 override fun onComplete() {
 

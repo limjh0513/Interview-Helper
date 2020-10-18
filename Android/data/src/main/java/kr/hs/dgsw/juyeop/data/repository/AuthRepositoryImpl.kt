@@ -19,6 +19,6 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun postRegister(registerRequest: RegisterRequest): Completable {
-        return authDataSource.postRegister(registerRequest)
+        return authDataSource.postRegister(registerRequest).ignoreElement()
     }
 }

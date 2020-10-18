@@ -1,6 +1,7 @@
 package kr.hs.dgsw.juyeop.domain.usecase.auth
 
 import io.reactivex.Completable
+import io.reactivex.Single
 import kr.hs.dgsw.juyeop.domain.base.ParamUseCase
 import kr.hs.dgsw.juyeop.domain.repository.AuthRepository
 import kr.hs.dgsw.juyeop.domain.request.auth.RegisterRequest
