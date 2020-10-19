@@ -98,6 +98,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/questionInfoTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
@@ -105,15 +106,18 @@
                         android:textColor="@android:color/white"
                         android:layout_weight="1"
                         android:layout_marginStart="25dp"
-                        tools:text="김주엽님이 답변하지 않은\n비전/목표 관련 면접 질문 수"/>
+                        tools:text="아직 답변하지 않은\n비전/목표 관련 면접 질문 수"/>
 
-                    <TextView
+                    <com.robinhood.ticker.TickerView
+                        android:id="@+id/questionCountTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
                         android:fontFamily="@font/bold"
                         android:textColor="@android:color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
                         android:layout_marginEnd="25dp"
+                        app:ticker_animationDuration="500"
                         tools:text="18개"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -121,9 +125,11 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp"
+                app:adapter="@{viewModel.questionItemAdapter}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_question"/>
+                tools:listitem="@layout/item_question" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -13,13 +13,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginTop="15dp"
             tools:ignore="MissingConstraints,UselessParent">
 
             <ImageView
@@ -30,28 +30,31 @@
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginStart="15dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/question"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={viewModel.question}"
                     android:textColor="@android:color/black"
                     android:textSize="15sp"
                     android:fontFamily="@font/regular"
-                    tools:text="회사를 입사한 후\n당신의 포부가 무엇입니까?"/>
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    tools:text="회사를 입사한 후 당신의 포부가 무엇입니까?"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/text_answer"
                     android:textColor="@color/colorAccent"
                     android:textSize="12sp"
                     android:fontFamily="@font/bold"
-                    android:layout_marginTop="5dp"
-                    tools:text="답변하러 가기 >"
-                    tools:ignore="SmallSp" />
+                    android:layout_marginTop="5dp" />
             </LinearLayout>
         </LinearLayout>
         

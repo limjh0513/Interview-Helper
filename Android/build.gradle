@@ -17,7 +17,9 @@ buildscript {
 
         roomVersion = "2.2.5"
 
-        navVersion = "2.3.0"
+        navVersion = "2.3.1"
+
+        tickerVersion = "2.0.2"
     }
     repositories {
         google()
