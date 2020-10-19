@@ -37,10 +37,9 @@
                 android:layout_marginStart="15dp">
 
                 <TextView
-                    android:id="@+id/question"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.question}"
+                    android:text="@={viewModel.name}"
                     android:textColor="@android:color/black"
                     android:textSize="15sp"
                     android:fontFamily="@font/regular"
@@ -56,14 +55,15 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="12sp"
                     android:fontFamily="@font/bold"
-                    android:layout_marginTop="5dp" />
+                    android:layout_marginTop="5dp"
+                    android:onClick="@{() -> viewModel.replyEvent()}"/>
             </LinearLayout>
         </LinearLayout>
         
         <View
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
-            android:background="@color/colorGray"
+            android:background="@color/colorSrongGray"
             android:layout_marginTop="15dp"/>
     </LinearLayout>
 </layout>

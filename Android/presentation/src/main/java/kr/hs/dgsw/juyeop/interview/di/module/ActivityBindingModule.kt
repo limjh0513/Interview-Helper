@@ -26,5 +26,9 @@ abstract class ActivityBindingModule {
 
     @PerActivity
     @ContributesAndroidInjector
+    abstract fun bindingQuestionReplyActivity(): QuestionReplyActivity
+
+    @PerActivity
+    @ContributesAndroidInjector
     abstract fun bindingMainActivity(): MainActivity
 }

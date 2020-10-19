@@ -59,6 +59,7 @@ class QuestionViewModel(
                 }
                 override fun onError(e: Throwable) {
                     onErrorEvent.value = e
+                    combineData()
                 }
             })
     }

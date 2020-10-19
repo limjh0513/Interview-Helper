@@ -16,10 +16,17 @@
 
     <string name="text_answer">답변하러 가기 ></string>
 
+    <string name="text_save">저장하기</string>
+    <string name="text_reply">답변 작성</string>
+    <string name="text_audio">오디오 녹음</string>
+    <string name="text_video">동영상 촬영</string>
+    <string name="text_select_audio">오디오 녹음을 해보세요 (선택사항)</string>
+    <string name="text_select_video">동영상 촬영을 해보세요 (선택사항)</string>
+
     <string name="menu_home">홈</string>
     <string name="menu_question">면접 질문</string>
     <string name="menu_my_info">내 정보</string>
-    
+
     <string name="tab_first">비전/목표</string>
     <string name="tab_second">조직적응력</string>
     <string name="tab_third">관심사/가치관</string>

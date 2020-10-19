@@ -8,10 +8,13 @@ import kr.hs.dgsw.juyeop.domain.entity.Question
 import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.databinding.ItemQuestionBinding
 import kr.hs.dgsw.juyeop.interview.viewmodel.adapter.QuestionItemViewModel
+import kr.hs.dgsw.juyeop.interview.widget.SingleLiveEvent
+import kr.hs.dgsw.juyeop.interview.widget.navigator.QuestionItemNavigator
 
-class QuestionItemAdapter : RecyclerView.Adapter<QuestionItemAdapter.ViewHolder>() {
+class QuestionItemAdapter : RecyclerView.Adapter<QuestionItemAdapter.ViewHolder>(), QuestionItemNavigator {
 
     lateinit var questionItemList: List<Question>
+    val onReplyEvent = SingleLiveEvent<Question>()
 
     fun setList(questionItemList: List<Question>) {
         this.questionItemList = questionItemList
@@ -31,11 +34,17 @@ class QuestionItemAdapter : RecyclerView.Adapter<QuestionItemAdapter.ViewHolder>
         return questionItemList.size
     }
 
+    override fun replyEvent(question: Question) {
+        onReplyEvent.value = question
+    }
+
     inner class ViewHolder(val binding: ItemQuestionBinding): RecyclerView.ViewHolder(binding.root) {
         val viewModel = QuestionItemViewModel()
 
         fun bind(question: Question) {
             viewModel.bind(question)
+            viewModel.setNavigator(this@QuestionItemAdapter)
+
             binding.viewModel = viewModel
             binding.lockImageView.setColorFilter(binding.root.resources.getColor(viewModel.getColorResource(question.category)), android.graphics.PorterDuff.Mode.MULTIPLY)
             binding.answerTextView.setTextColor(binding.root.resources.getColor(viewModel.getColorResource(question.category)))

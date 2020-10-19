@@ -7,9 +7,11 @@ import kotlinx.android.synthetic.main.fragment_question.*
 import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.view.BaseFragment
 import kr.hs.dgsw.juyeop.interview.databinding.FragmentQuestionBinding
+import kr.hs.dgsw.juyeop.interview.view.activity.QuestionReplyActivity
 import kr.hs.dgsw.juyeop.interview.viewmodel.fragment.QuestionViewModel
 import kr.hs.dgsw.juyeop.interview.viewmodelfactory.fragment.QuestionViewModelFactory
 import kr.hs.dgsw.juyeop.interview.widget.extension.getViewModel
+import kr.hs.dgsw.juyeop.interview.widget.extension.startActivityWithValue
 import javax.inject.Inject
 
 class QuestionFragment : BaseFragment<FragmentQuestionBinding, QuestionViewModel>() {
@@ -35,12 +37,16 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding, QuestionViewModel
                 val questionCount = "${questionItemList.size}개"
                 questionCountTextView.text = questionCount
             })
+            questionItemAdapter.onReplyEvent.observe(this@QuestionFragment, Observer {
+                startActivityWithValue(requireContext(), "question", QuestionReplyActivity::class.java, it)
+            })
         }
     }
 
     override fun onResume() {
         super.onResume()
         tabSelectedEvent()
+        viewModel.getAllSolution()
     }
 
     fun tabSelectedEvent() {

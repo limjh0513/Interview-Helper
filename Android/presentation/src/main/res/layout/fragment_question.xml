@@ -45,7 +45,7 @@
                     app:tabMode="scrollable"
                     app:tabSelectedTextColor="@android:color/black"
                     app:tabTextAppearance="@style/tabTheme"
-                    app:tabTextColor="@color/colorGray">
+                    app:tabTextColor="@color/colorSrongGray">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
