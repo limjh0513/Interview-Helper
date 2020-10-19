@@ -7,4 +7,12 @@
     <color name="colorBrown">#807D7D</color>
     <color name="colorGray">#C9C9C9</color>
     <color name="colorIndigo">#353D48</color>
+
+    <color name="colorCategory1">#18CC8B</color>
+    <color name="colorCategory2">#02CFB6</color>
+    <color name="colorCategory3">#FE90AB</color>
+    <color name="colorCategory4">#0BB6EC</color>
+    <color name="colorCategory5">#00D2EB</color>
+    <color name="colorCategory6">#3599F1</color>
+    <color name="colorCategory7">#6D7BF5</color>
 </resources>

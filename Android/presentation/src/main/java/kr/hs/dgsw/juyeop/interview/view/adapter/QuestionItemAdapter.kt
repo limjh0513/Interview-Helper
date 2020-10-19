@@ -37,6 +37,8 @@ class QuestionItemAdapter : RecyclerView.Adapter<QuestionItemAdapter.ViewHolder>
         fun bind(question: Question) {
             viewModel.bind(question)
             binding.viewModel = viewModel
+            binding.lockImageView.setColorFilter(binding.root.resources.getColor(viewModel.getColorResource(question.category)), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding.answerTextView.setTextColor(binding.root.resources.getColor(viewModel.getColorResource(question.category)))
         }
     }
 }

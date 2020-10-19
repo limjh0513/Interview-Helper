@@ -8,6 +8,7 @@ import kr.hs.dgsw.juyeop.domain.entity.Question
 import kr.hs.dgsw.juyeop.domain.entity.Solution
 import kr.hs.dgsw.juyeop.domain.usecase.question.GetAllQuestionUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.solution.GetAllSolutionUseCase
+import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.viewmodel.BaseViewModel
 import kr.hs.dgsw.juyeop.interview.view.adapter.QuestionItemAdapter
 import kr.hs.dgsw.juyeop.interview.widget.SingleLiveEvent
@@ -80,5 +81,19 @@ class QuestionViewModel(
         questionItemAdapter.notifyDataSetChanged()
 
         onCombinEvent.call()
+    }
+
+    fun getColorResource(category: Int): Int {
+        var colorResource = R.color.colorCategory1
+        when(category) {
+            1 -> colorResource = R.color.colorCategory1
+            2 -> colorResource = R.color.colorCategory2
+            3 -> colorResource = R.color.colorCategory3
+            4 -> colorResource = R.color.colorCategory4
+            5 -> colorResource = R.color.colorCategory5
+            6 -> colorResource = R.color.colorCategory6
+            7 -> colorResource = R.color.colorCategory7
+        }
+        return colorResource
     }
 }

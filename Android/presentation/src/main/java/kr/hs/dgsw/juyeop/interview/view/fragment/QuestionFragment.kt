@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer
 import com.google.android.material.tabs.TabLayout
 import com.robinhood.ticker.TickerUtils
 import kotlinx.android.synthetic.main.fragment_question.*
+import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.view.BaseFragment
 import kr.hs.dgsw.juyeop.interview.databinding.FragmentQuestionBinding
 import kr.hs.dgsw.juyeop.interview.viewmodel.fragment.QuestionViewModel
@@ -13,6 +14,7 @@ import javax.inject.Inject
 
 class QuestionFragment : BaseFragment<FragmentQuestionBinding, QuestionViewModel>() {
 
+    private var colorResource = R.color.colorCategory1
     private val NUMBER_LIST = TickerUtils.provideNumberList()
 
     @Inject
@@ -25,6 +27,7 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding, QuestionViewModel
         with(viewModel) {
             category.observe(this@QuestionFragment, Observer {
                 getAllSolution()
+                backgroundCardView.setCardBackgroundColor(resources.getColor(colorResource))
             })
             onCombinEvent.observe(this@QuestionFragment, Observer {
                 questionCountTextView.setCharacterLists(NUMBER_LIST)
@@ -50,6 +53,7 @@ class QuestionFragment : BaseFragment<FragmentQuestionBinding, QuestionViewModel
                 questionInfoTextView.text = questionInfo
 
                 with(viewModel) {
+                    colorResource = getColorResource(tab.position+1)
                     when (tab.position) {
                         0 -> category.value = 1
                         1 -> category.value = 2

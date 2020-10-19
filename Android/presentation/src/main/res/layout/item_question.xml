@@ -23,6 +23,7 @@
             tools:ignore="MissingConstraints,UselessParent">
 
             <ImageView
+                android:id="@+id/lockImageView"
                 android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_lock"
@@ -48,6 +49,7 @@
                     tools:text="회사를 입사한 후 당신의 포부가 무엇입니까?"/>
 
                 <TextView
+                    android:id="@+id/answerTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/text_answer"
