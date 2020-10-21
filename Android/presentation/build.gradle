@@ -72,6 +72,9 @@ dependencies {
     // Ticker
     implementation "com.robinhood.ticker:ticker:$rootProject.tickerVersion"
 
+    // TedPermission
+    implementation "gun0912.ted:tedpermission:$rootProject.tedPermissonVersion"
+
     implementation project(":data")
     implementation project(":domain")
 }

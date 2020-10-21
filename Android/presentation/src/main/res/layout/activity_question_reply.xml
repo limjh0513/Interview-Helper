@@ -157,6 +157,7 @@
                             android:src="@drawable/ic_mic"
                             android:tint="@color/colorSrongGray"
                             android:layout_gravity="center"
+                            android:onClick="@{() -> viewModel.audioEvent()}"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -192,6 +193,7 @@
                             android:src="@drawable/ic_video"
                             android:tint="@color/colorSrongGray"
                             android:layout_gravity="center"
+                            android:onClick="@{() -> viewModel.videoEvent()}"
                             tools:ignore="ContentDescription" />
 
                         <TextView

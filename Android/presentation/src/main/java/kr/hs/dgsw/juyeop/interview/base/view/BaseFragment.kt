@@ -34,6 +34,11 @@ abstract class BaseFragment<VB: ViewDataBinding, VM: BaseViewModel> : DaggerFrag
         observerViewModel()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::mBinding.isInitialized) mBinding.unbind()
+    }
+
     private fun setUp() {
         mViewModel = if (::mViewModel.isInitialized) mViewModel else viewModel
         mBinding.setVariable(BR.viewModel, mViewModel)

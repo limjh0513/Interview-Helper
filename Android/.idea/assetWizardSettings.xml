@@ -301,7 +301,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/video_call/baseline_video_call_24.xml" />
+                                      <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/stop/baseline_stop_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -311,7 +311,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_video" />
+                            <entry key="outputName" value="ic_stop" />
                             <entry key="sourceFile" value="$USER_HOME$/Downloads/ic_people1.svg" />
                           </map>
                         </option>

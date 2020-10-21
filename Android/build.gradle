@@ -20,6 +20,8 @@ buildscript {
         navVersion = "2.3.1"
 
         tickerVersion = "2.0.2"
+
+        tedPermissonVersion = "2.2.3"
     }
     repositories {
         google()
