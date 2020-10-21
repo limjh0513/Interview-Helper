@@ -3,7 +3,6 @@ package kr.hs.dgsw.juyeop.domain.usecase.upload
 import io.reactivex.Single
 import kr.hs.dgsw.juyeop.domain.base.ParamUseCase
 import kr.hs.dgsw.juyeop.domain.repository.UploadRepository
-import okhttp3.MultipartBody
 import java.io.File
 import javax.inject.Inject
 

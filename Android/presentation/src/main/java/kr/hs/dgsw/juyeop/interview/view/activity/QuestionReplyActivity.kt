@@ -41,8 +41,8 @@ class QuestionReplyActivity : BaseActivity<ActivityQuestionReplyBinding, Questio
             onAudioEvent.observe(this@QuestionReplyActivity, Observer {
                 val audioRecordDialog = AudioRecordDialog()
                 audioRecordDialog.show(supportFragmentManager)
-                audioRecordDialog.onRecordStopEvent.observe(this@QuestionReplyActivity, Observer {
-                    Log.e("path", it)
+                audioRecordDialog.onDismissEvent.observe(this@QuestionReplyActivity, Observer {
+                    setAudioData(it)
                 })
             })
             onVideoEvent.observe(this@QuestionReplyActivity, Observer {

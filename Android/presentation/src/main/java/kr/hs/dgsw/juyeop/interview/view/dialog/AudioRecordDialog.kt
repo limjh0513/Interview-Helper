@@ -1,5 +1,6 @@
 package kr.hs.dgsw.juyeop.interview.view.dialog
 
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.dialog_audio_record.*
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 class AudioRecordDialog : BaseDialog<DialogAudioRecordBinding, AudioRecordViewModel>() {
 
-    val onRecordStopEvent = MutableLiveData<String>()
+    val onDismissEvent = MutableLiveData<String>()
 
     @Inject
     lateinit var viewModelFactory: AudioRecordViewModelFactory
@@ -25,6 +26,7 @@ class AudioRecordDialog : BaseDialog<DialogAudioRecordBinding, AudioRecordViewMo
         with(viewModel) {
             onRecordEvent.observe(this@AudioRecordDialog, Observer {
                 recordImageView.setImageDrawable(resources.getDrawable(R.drawable.ic_stop))
+                cancelImageView.visibility = View.GONE
             })
             onCancelEvent.observe(this@AudioRecordDialog, Observer {
                 dismiss()
@@ -34,6 +36,6 @@ class AudioRecordDialog : BaseDialog<DialogAudioRecordBinding, AudioRecordViewMo
 
     override fun dismiss() {
         super.dismiss()
-        onRecordStopEvent.value = viewModel.mediaFileName
+        onDismissEvent.value = viewModel.mediaFileName
     }
 }

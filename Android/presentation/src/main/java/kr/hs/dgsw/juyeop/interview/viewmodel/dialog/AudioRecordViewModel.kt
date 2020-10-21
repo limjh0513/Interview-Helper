@@ -15,19 +15,14 @@ import kr.hs.dgsw.juyeop.interview.widget.SingleLiveEvent
 import kr.hs.dgsw.juyeop.interview.widget.manager.SharedPreferencesManager
 import java.io.File
 
-/**
- * 녹음이 끝난 후 QuestionReplyActivity -> mediaFileName 값을 전달해야한다.
- */
-
 class AudioRecordViewModel(
     private val context: Context
 ) : BaseViewModel() {
 
+    lateinit var mediaRecorder: MediaRecorder
+
     var recordKind = 0
     var mediaFileName = ""
-
-    val mediaRecorder = MediaRecorder()
-    val mediaPlayer = MediaPlayer()
 
     val timerCount = MutableLiveData("0")
 
@@ -36,7 +31,6 @@ class AudioRecordViewModel(
 
     init {
         fileSetting()
-        mediaRecorderSetting()
     }
 
     fun fileSetting() {
@@ -64,6 +58,9 @@ class AudioRecordViewModel(
     }
 
     fun startRecord() {
+        mediaRecorder = MediaRecorder()
+        mediaRecorderSetting()
+
         mediaRecorder.prepare()
         mediaRecorder.start()
 

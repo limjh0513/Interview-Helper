@@ -11,11 +11,11 @@ class UploadDataSource @Inject constructor(
     override val cache: Any
 ): BaseDataSource<UploadRemote, Any>() {
 
-    fun uploadAudio(audio: MultipartBody): Single<String> {
+    fun uploadAudio(audio: MultipartBody.Part): Single<String> {
         return remote.uploadAudio(audio)
     }
 
-    fun uploadVideo(video: MultipartBody): Single<String> {
+    fun uploadVideo(video: MultipartBody.Part): Single<String> {
         return remote.uploadVideo(video)
     }
 }

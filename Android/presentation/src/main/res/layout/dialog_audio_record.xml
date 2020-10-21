@@ -54,12 +54,13 @@
                     android:gravity="end">
 
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:id="@+id/cancelImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginEnd="25dp"
+                        android:onClick="@{() -> viewModel.cancelEvent()}"
                         android:src="@drawable/ic_clear"
                         android:tint="@android:color/black"
-                        android:onClick="@{() -> viewModel.cancelEvent()}"
                         tools:ignore="ContentDescription" />
                 </LinearLayout>
             </LinearLayout>

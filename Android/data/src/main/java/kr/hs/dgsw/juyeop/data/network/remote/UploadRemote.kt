@@ -7,11 +7,11 @@ import okhttp3.MultipartBody
 
 class UploadRemote(override val service: UploadService) : BaseRemote<UploadService>() {
 
-    fun uploadAudio(audio: MultipartBody): Single<String> {
+    fun uploadAudio(audio: MultipartBody.Part): Single<String> {
         return service.uploadAudio(audio).map(getResponse())
     }
 
-    fun uploadVideo(video: MultipartBody): Single<String> {
+    fun uploadVideo(video: MultipartBody.Part): Single<String> {
         return service.uploadVideo(video).map(getResponse())
     }
 }

@@ -15,45 +15,41 @@ class UploadRepositoryImpl @Inject constructor(
     private val uploadDataSource: UploadDataSource
 ): UploadRepository {
 
-    lateinit var file: MultipartBody
+    lateinit var file: MultipartBody.Part
 
     override fun uploadAudio(audio: File): Single<String> {
         setAudioToMultipartBody(audio)
         return uploadDataSource.uploadAudio(file)
     }
-
     override fun uploadVideo(video: File): Single<String> {
         setVideoToMultipartBody(video)
         return uploadDataSource.uploadVideo(file)
     }
 
     private fun setAudioToMultipartBody(audio: File) {
-        val audioBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
+        val uploadName = "DA_IMG_${Random().nextInt(Int.MAX_VALUE)}"
 
-        val uploadName = "DA_FILE_${Random().nextInt(Int.MAX_VALUE)}"
-        val extension = audio.extension
+        val extension = getExtension(audio)
         val mediaType = getMediaType(extension)
-
         val audioBody = RequestBody.create(mediaType.toMediaTypeOrNull(), audio)
 
-        audioBuilder.addFormDataPart("audio", "$uploadName.$extension", audioBody)
-        this.file = audioBuilder.build()
+        file = MultipartBody.Part.createFormData("audio", "$uploadName.$extension", audioBody)
     }
-
     private fun setVideoToMultipartBody(video: File) {
-        val videoBuilder = MultipartBody.Builder().setType(MultipartBody.FORM)
+        val uploadName = "DA_IMG_${Random().nextInt(Int.MAX_VALUE)}"
 
-        val uploadName = "DA_FILE_${Random().nextInt(Int.MAX_VALUE)}"
-        val extension = video.extension
+        val extension = getExtension(video)
         val mediaType = getMediaType(extension)
+        val audioBody = RequestBody.create(mediaType.toMediaTypeOrNull(), video)
 
-        val videoBody = RequestBody.create(mediaType.toMediaTypeOrNull(), video)
-
-        videoBuilder.addFormDataPart("video", "$uploadName.$extension", videoBody)
-        this.file = videoBuilder.build()
+        file = MultipartBody.Part.createFormData("video", "$uploadName.$extension", audioBody)
     }
 
     private fun getMediaType(extension: String): String {
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension).toString()
+    }
+    private fun getExtension(file: File): String {
+        val filenameArray: Array<String> = file.name.split(".").toTypedArray()
+        return filenameArray[filenameArray.size - 1]
     }
 }
