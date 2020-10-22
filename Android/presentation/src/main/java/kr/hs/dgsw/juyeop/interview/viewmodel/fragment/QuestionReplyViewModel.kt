@@ -32,6 +32,7 @@ class QuestionReplyViewModel(
 
     lateinit var question: Question
     lateinit var audioFile: File
+    lateinit var videoFile: File
 
     val categoryName = MutableLiveData<String>()
     val questionName = MutableLiveData<String>()
@@ -39,6 +40,10 @@ class QuestionReplyViewModel(
     val audioLayout = MutableLiveData(false)
     val audioName = MutableLiveData<String>()
     val audioTime = MutableLiveData<String>()
+
+    val videoLayout = MutableLiveData(false)
+    val videoName = MutableLiveData<String>()
+    val videoTime = MutableLiveData<String>()
 
     val solutionText = MutableLiveData<String>()
     val solutionAudio = MutableLiveData<String>()
@@ -70,16 +75,46 @@ class QuestionReplyViewModel(
             audioLayout.value = false
         }
     }
+    fun setVideoData(mediaFileName: String) {
+        videoFile = File(mediaFileName)
+        if (videoFile.exists()) {
+            val mediaPlayer = MediaPlayer()
+            mediaPlayer.setDataSource(mediaFileName)
+            mediaPlayer.prepare()
+
+            videoLayout.value = true
+            videoName.value = videoFile.name
+            videoTime.value = SimpleDateFormat("mm:ss", Locale.getDefault()).format(mediaPlayer.duration)
+        } else {
+            videoLayout.value = false
+        }
+    }
 
     fun saveEvent() {
         saveAudioEvent()
     }
     fun saveAudioEvent() {
-        if (audioFile.exists()) {
+        if (this::audioFile.isInitialized) {
             addDisposable(uploadAudioUseCase.buildUseCaseObservable(UploadAudioUseCase.Params(audioFile)),
                 object : DisposableSingleObserver<String>() {
                     override fun onSuccess(t: String) {
                         solutionAudio.value = t
+                        saveVideoEvent()
+                    }
+                    override fun onError(e: Throwable) {
+                        onErrorEvent.value = e
+                    }
+                })
+        } else {
+            saveVideoEvent()
+        }
+    }
+    fun saveVideoEvent() {
+        if (this::videoFile.isInitialized) {
+            addDisposable(uploadVideoUseCase.buildUseCaseObservable(UploadVideoUseCase.Params(videoFile)),
+                object : DisposableSingleObserver<String>() {
+                    override fun onSuccess(t: String) {
+                        solutionVideo.value = t
                         saveSolutionEvent()
                     }
                     override fun onError(e: Throwable) {
@@ -171,5 +206,9 @@ class QuestionReplyViewModel(
     fun audioDeleteEvent() {
         audioFile.delete()
         audioLayout.value = false
+    }
+    fun videoDeleteEvent() {
+        videoFile.delete()
+        videoLayout.value = false
     }
 }

@@ -10,13 +10,13 @@
     </data>
 
     <FrameLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawable_dialog">
 
         <LinearLayout
-            android:layout_width="410dp"
-            android:layout_height="230dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:ignore="UselessLeaf,UselessParent">
 

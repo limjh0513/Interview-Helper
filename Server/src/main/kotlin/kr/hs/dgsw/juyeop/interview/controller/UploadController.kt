@@ -17,17 +17,6 @@ import javax.servlet.MultipartConfigElement
 @RestController
 class UploadController {
 
-    @Bean
-    fun multipartConfigElement(): MultipartConfigElement? {
-        return MultipartConfigElement("")
-    }
-    @Bean
-    fun multipartResolver(): MultipartResolver? {
-        val multipartResolver = CommonsMultipartResolver()
-        multipartResolver.setMaxUploadSize(1000000)
-        return multipartResolver
-    }
-
     @PostMapping
     @Throws(IOException::class)
     @RequestMapping("/upload/audio")

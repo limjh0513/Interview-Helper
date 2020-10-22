@@ -40,7 +40,7 @@ abstract class BaseDialog<VB : ViewDataBinding, VM : BaseViewModel>: DaggerDialo
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val root = RelativeLayout(activity)
         root.layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
 
@@ -53,7 +53,7 @@ abstract class BaseDialog<VB : ViewDataBinding, VM : BaseViewModel>: DaggerDialo
         if (dialog.window != null) {
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.window!!.setLayout(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
             dialog.window!!.setGravity(Gravity.BOTTOM)

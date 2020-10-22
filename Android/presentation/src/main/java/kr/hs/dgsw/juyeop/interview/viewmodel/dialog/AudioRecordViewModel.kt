@@ -34,7 +34,7 @@ class AudioRecordViewModel(
     }
 
     fun fileSetting() {
-        val directory = File(Environment.getExternalStorageDirectory().absolutePath + File.separator + "record")
+        val directory = File(Environment.getExternalStorageDirectory().absolutePath + File.separator + "audio")
         if (!directory.exists()) directory.mkdirs()
 
         mediaFileName = directory.path + File.separator + System.currentTimeMillis() + ".mp3"

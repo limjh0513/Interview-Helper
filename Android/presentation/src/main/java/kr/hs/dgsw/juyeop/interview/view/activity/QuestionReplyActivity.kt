@@ -8,6 +8,7 @@ import kr.hs.dgsw.juyeop.domain.entity.Question
 import kr.hs.dgsw.juyeop.interview.base.view.BaseActivity
 import kr.hs.dgsw.juyeop.interview.databinding.ActivityQuestionReplyBinding
 import kr.hs.dgsw.juyeop.interview.view.dialog.AudioRecordDialog
+import kr.hs.dgsw.juyeop.interview.view.dialog.VideoTakeDialog
 import kr.hs.dgsw.juyeop.interview.viewmodel.fragment.QuestionReplyViewModel
 import kr.hs.dgsw.juyeop.interview.viewmodelfactory.activity.QuestionReplyViewModelFactory
 import kr.hs.dgsw.juyeop.interview.widget.extension.getViewModel
@@ -46,7 +47,11 @@ class QuestionReplyActivity : BaseActivity<ActivityQuestionReplyBinding, Questio
                 })
             })
             onVideoEvent.observe(this@QuestionReplyActivity, Observer {
-
+                val videoTakeDialog = VideoTakeDialog()
+                videoTakeDialog.show(supportFragmentManager)
+                videoTakeDialog.onDismissEvent.observe(this@QuestionReplyActivity, Observer {
+                    setVideoData(it)
+                })
             })
         }
     }
