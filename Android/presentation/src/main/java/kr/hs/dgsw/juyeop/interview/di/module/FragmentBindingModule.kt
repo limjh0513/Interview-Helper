@@ -5,9 +5,7 @@ import dagger.android.ContributesAndroidInjector
 import kr.hs.dgsw.juyeop.interview.di.scope.PerFragment
 import kr.hs.dgsw.juyeop.interview.view.dialog.AudioRecordDialog
 import kr.hs.dgsw.juyeop.interview.view.dialog.VideoTakeDialog
-import kr.hs.dgsw.juyeop.interview.view.fragment.HomeFragment
-import kr.hs.dgsw.juyeop.interview.view.fragment.MyInfoFragment
-import kr.hs.dgsw.juyeop.interview.view.fragment.QuestionFragment
+import kr.hs.dgsw.juyeop.interview.view.fragment.*
 
 @Module
 abstract class FragmentBindingModule {
@@ -31,4 +29,20 @@ abstract class FragmentBindingModule {
     @PerFragment
     @ContributesAndroidInjector
     abstract fun bindingVideoTakeDialog(): VideoTakeDialog
+
+    @PerFragment
+    @ContributesAndroidInjector
+    abstract fun bindingRankFragment(): RankFragment
+
+    @PerFragment
+    @ContributesAndroidInjector
+    abstract fun bindingAdviceFragment(): AdviceFragment
+
+    @PerFragment
+    @ContributesAndroidInjector
+    abstract fun bindingRecruitFragment(): RecruitFragment
+
+    @PerFragment
+    @ContributesAndroidInjector
+    abstract fun bindingRecommandFragment(): RecommandFragment
 }

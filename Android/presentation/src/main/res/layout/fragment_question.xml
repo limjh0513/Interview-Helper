@@ -44,43 +44,43 @@
                     app:tabIndicatorHeight="3dp"
                     app:tabMode="scrollable"
                     app:tabSelectedTextColor="@android:color/black"
-                    app:tabTextAppearance="@style/tabTheme"
+                    app:tabTextAppearance="@style/tabQuestionTheme"
                     app:tabTextColor="@color/colorStrongGray">
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tab_first" />
+                        android:text="@string/tab_question_first" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tab_second" />
+                        android:text="@string/tab_question_second" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tab_third" />
+                        android:text="@string/tab_question_third" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tab_fourth" />
+                        android:text="@string/tab_question_fourth" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tab_fifth" />
+                        android:text="@string/tab_question_fifth" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tab_sixth" />
+                        android:text="@string/tab_question_sixth" />
 
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tab_seventh" />
+                        android:text="@string/tab_question_seventh" />
                 </com.google.android.material.tabs.TabLayout>
             </FrameLayout>
 

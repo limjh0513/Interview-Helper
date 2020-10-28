@@ -19,11 +19,6 @@ import kr.hs.dgsw.juyeop.interview.viewmodelfactory.dialog.VideoTakeViewModelFac
 import kr.hs.dgsw.juyeop.interview.widget.extension.getViewModel
 import javax.inject.Inject
 
-/**
- * 1. 카메라 회전 문제
- * 2. 동영상 화질 문제
- */
-
 class VideoTakeDialog : BaseDialog<DialogVideoTakeBinding, VideoTakeViewModel>() {
 
     val onDismissEvent = MutableLiveData<String>()

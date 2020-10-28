@@ -50,6 +50,7 @@ class QuestionReplyViewModel(
     val solutionVideo = MutableLiveData<String>()
 
     val onBackEvent = SingleLiveEvent<Unit>()
+    val onEmptyEvent = SingleLiveEvent<Unit>()
     val onCompleteEvent = SingleLiveEvent<Unit>()
     val onAudioEvent = SingleLiveEvent<Unit>()
     val onVideoEvent = SingleLiveEvent<Unit>()
@@ -126,18 +127,22 @@ class QuestionReplyViewModel(
         }
     }
     fun saveSolutionEvent() {
-        val userId = SharedPreferencesManager.getUserId(context).toString()
-        val postSolutionReqeust = PostSolutionReqeust(null, userId, question.idx, solutionText.value, solutionAudio.value, solutionVideo.value, Date().atFormat())
+        if (!solutionText.value.isNullOrEmpty()) {
+            val userId = SharedPreferencesManager.getUserId(context).toString()
+            val postSolutionReqeust = PostSolutionReqeust(null, userId, question.idx, solutionText.value, solutionAudio.value, solutionVideo.value, Date().atFormat())
 
-        addDisposable(postSolutionUseCase.buildUseCaseObservable(PostSolutionUseCase.Params(postSolutionReqeust)),
-            object : DisposableCompletableObserver() {
-                override fun onComplete() {
-                    onCompleteEvent.call()
-                }
-                override fun onError(e: Throwable) {
-                    e.printStackTrace()
-                }
-            })
+            addDisposable(postSolutionUseCase.buildUseCaseObservable(PostSolutionUseCase.Params(postSolutionReqeust)),
+                object : DisposableCompletableObserver() {
+                    override fun onComplete() {
+                        onCompleteEvent.call()
+                    }
+                    override fun onError(e: Throwable) {
+                        e.printStackTrace()
+                    }
+                })
+        } else {
+            onEmptyEvent.call()
+        }
     }
 
     fun permissionSetting() {
@@ -168,15 +173,15 @@ class QuestionReplyViewModel(
         }
     }
     fun getCategoryName(): String {
-        var categoryResource = R.string.tab_first
+        var categoryResource = R.string.tab_question_first
         when(question.category) {
-            1 -> categoryResource = R.string.tab_first
-            2 -> categoryResource = R.string.tab_second
-            3 -> categoryResource = R.string.tab_third
-            4 -> categoryResource = R.string.tab_fourth
-            5 -> categoryResource = R.string.tab_fifth
-            6 -> categoryResource = R.string.tab_sixth
-            7 -> categoryResource = R.string.tab_seventh
+            1 -> categoryResource = R.string.tab_question_first
+            2 -> categoryResource = R.string.tab_question_second
+            3 -> categoryResource = R.string.tab_question_third
+            4 -> categoryResource = R.string.tab_question_fourth
+            5 -> categoryResource = R.string.tab_question_fifth
+            6 -> categoryResource = R.string.tab_question_sixth
+            7 -> categoryResource = R.string.tab_question_seventh
         }
         return context.resources.getString(categoryResource)
     }
