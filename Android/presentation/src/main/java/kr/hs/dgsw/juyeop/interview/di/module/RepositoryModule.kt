@@ -38,4 +38,10 @@ class RepositoryModule {
     fun provideUploadRepository(uploadRepositoryImpl: UploadRepositoryImpl): UploadRepository {
         return uploadRepositoryImpl
     }
+
+    @Singleton
+    @Provides
+    fun provideUserRepository(userRepositoryImpl: UserRepositoryImpl): UserRepository {
+        return userRepositoryImpl
+    }
 }

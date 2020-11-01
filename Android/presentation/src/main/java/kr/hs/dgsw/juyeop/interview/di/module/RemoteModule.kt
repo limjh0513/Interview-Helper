@@ -40,4 +40,10 @@ class RemoteModule {
     fun provideUploadRemote(retrofit: Retrofit): UploadRemote {
         return UploadRemote(retrofit.create(UploadService::class.java))
     }
+
+    @Singleton
+    @Provides
+    fun provideUserRemote(retrofit: Retrofit): UserRemote {
+        return UserRemote(retrofit.create(UserService::class.java))
+    }
 }

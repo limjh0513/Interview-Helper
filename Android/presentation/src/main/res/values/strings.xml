@@ -1,37 +1,39 @@
 <resources>
     <string name="app_name">Interview</string>
     <string name="app_name2">Interview Helper</string>
-
     <string name="text_sign_in">로그인</string>
     <string name="text_sign_up"><u>회원가입</u></string>
-
     <string name="text_input_name">이름을 입력해주세요</string>
     <string name="text_input_id">아이디를 입력해주세요</string>
     <string name="text_input_pw">비밀번호를 입력해주세요</string>
     <string name="text_check_data">입력하신 정보가 맞는지\n확인 후, 다음 버튼을 눌러주세요</string>
     <string name="text_next">다음</string>
-
     <string name="text_sign_up_complete">회원가입을 완료했습니다</string>
     <string name="text_sign_up_complete2">상단의 버튼을 클릭하여 로그인 하시기 바랍니다</string>
-
     <string name="text_answer">답변하러 가기 ></string>
-
     <string name="text_save">저장하기</string>
     <string name="text_reply">답변 작성</string>
     <string name="text_audio">오디오 녹음</string>
     <string name="text_video">동영상 촬영</string>
     <string name="text_select_audio">오디오 녹음을 해보세요 (선택사항)</string>
     <string name="text_select_video">동영상 촬영을 해보세요 (선택사항)</string>
+    <string name="text_use_app">현재 인터뷰 헬퍼를\n사용중인 사람들의 수는?</string>
+    <string name="text_rank_app">인터뷰 헬퍼 답변 순위</string>
+    <string name="text_info">정보</string>
 
     <string name="menu_home">홈</string>
     <string name="menu_question">면접 질문</string>
     <string name="menu_my_info">내 정보</string>
+    
+    <string name="title_rank">선의의 경쟁</string>
+    <string name="title_advice">우리들의 길잡이</string>
+    <string name="title_recruit">앞으로의 미래</string>
+    <string name="title_recommand">좋은 정보 나눔</string>
 
     <string name="tab_main_first">순위</string>
     <string name="tab_main_second">조언</string>
     <string name="tab_main_third">채용</string>
     <string name="tab_main_fourth">추천</string>
-
     <string name="tab_question_first">비전/목표</string>
     <string name="tab_question_second">조직적응력</string>
     <string name="tab_question_third">관심사/가치관</string>
@@ -44,6 +46,4 @@
 
     <string name="empty_data">정보를 입력해주시기 바랍니다.</string>
     <string name="empty_solution">답변을 입력해주시기 바랍니다.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

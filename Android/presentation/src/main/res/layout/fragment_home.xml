@@ -31,14 +31,15 @@
                 tools:ignore="ContentDescription" />
 
             <TextView
+                android:id="@+id/tabsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@android:color/black"
-                android:fontFamily="@font/bold"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
-                tools:text="선의의 경쟁"/>
+                android:fontFamily="@font/bold"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                tools:text="선의의 경쟁" />
 
             <FrameLayout
                 android:layout_width="match_parent"

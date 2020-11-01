@@ -27,17 +27,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun onResume() {
         super.onResume()
-
-        val fragmentTranscation = activity?.supportFragmentManager?.beginTransaction()
-        fragmentTranscation?.replace(R.id.frameLayout, rankFragment)?.commitAllowingStateLoss()
         tabSelectedEvent()
     }
 
     fun tabSelectedEvent() {
+        var fragmentTranscation = activity?.supportFragmentManager?.beginTransaction()
+        fragmentTranscation?.replace(R.id.frameLayout, rankFragment)?.commitAllowingStateLoss()
+        tabsTextView.text = resources.getString(viewModel.getTitleResource(tabs.selectedTabPosition))
+
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                val fragmentTranscation = activity?.supportFragmentManager?.beginTransaction()
-                when (tab?.position) {
+                fragmentTranscation = activity?.supportFragmentManager?.beginTransaction()
+                tabsTextView.text = resources.getString(viewModel.getTitleResource(tab!!.position))
+
+                when (tab.position) {
                     0 -> fragmentTranscation?.replace(R.id.frameLayout, rankFragment)?.commitAllowingStateLoss()
                     1 -> fragmentTranscation?.replace(R.id.frameLayout, adviceFragment)?.commitAllowingStateLoss()
                     2 -> fragmentTranscation?.replace(R.id.frameLayout, recruitFragment)?.commitAllowingStateLoss()
