@@ -100,8 +100,7 @@
                         android:scrollbars="none"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:adapter="@{viewModel.rankItemAdapter}"
-                        tools:listitem="@layout/item_rank"
-                        tools:itemCount="2"/>
+                        tools:listitem="@layout/item_rank"/>
                 </LinearLayout>
 
             </LinearLayout>

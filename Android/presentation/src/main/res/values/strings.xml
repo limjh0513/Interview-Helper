@@ -20,6 +20,8 @@
     <string name="text_use_app">현재 인터뷰 헬퍼를\n사용중인 사람들의 수는?</string>
     <string name="text_rank_app">인터뷰 헬퍼 답변 순위</string>
     <string name="text_info">정보</string>
+    <string name="text_advice1">면접 전문가들의</string>
+    <string name="text_advice2">조언을 참고해보세요!</string>
 
     <string name="menu_home">홈</string>
     <string name="menu_question">면접 질문</string>
