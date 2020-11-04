@@ -22,6 +22,10 @@
     <string name="text_info">정보</string>
     <string name="text_advice1">면접 전문가들의</string>
     <string name="text_advice2">조언을 참고해보세요!</string>
+    <string name="text_my_info">MY</string>
+    <string name="text_my_info_change">개인 설정 / 서비스 설정</string>
+    <string name="text_my_solution_count">답변한 질문 수</string>
+    <string name="text_my_solution_check">답변한 질문 확인</string>
 
     <string name="menu_home">홈</string>
     <string name="menu_question">면접 질문</string>

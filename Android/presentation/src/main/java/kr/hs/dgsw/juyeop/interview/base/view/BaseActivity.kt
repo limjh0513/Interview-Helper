@@ -34,11 +34,6 @@ abstract class BaseActivity<VB: ViewDataBinding, VM: BaseViewModel>: DaggerAppCo
         if (::mBinding.isInitialized) mBinding.unbind()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        ActivityCompat.finishAffinity(this)
-    }
-
     private fun setStatusMode() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
     }

@@ -1,6 +1,7 @@
 package kr.hs.dgsw.juyeop.interview.view.activity
 
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,6 +27,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val navController = findNavController(R.id.page_fragment)
         bottom_navigation_view.setupWithNavController(navController)
     }
-
     override fun observerViewModel() {}
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        ActivityCompat.finishAffinity(this)
+    }
 }
