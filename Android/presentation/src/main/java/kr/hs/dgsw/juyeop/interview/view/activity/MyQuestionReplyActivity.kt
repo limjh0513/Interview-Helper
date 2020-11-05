@@ -3,9 +3,7 @@ package kr.hs.dgsw.juyeop.interview.view.activity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_my_question_reply.*
-import kotlinx.android.synthetic.main.activity_question_reply.*
 import kotlinx.android.synthetic.main.activity_question_reply.backgroundLayout
-import kotlinx.android.synthetic.main.dialog_audio_record.*
 import kr.hs.dgsw.juyeop.data.util.Constants
 import kr.hs.dgsw.juyeop.domain.entity.Question
 import kr.hs.dgsw.juyeop.domain.entity.Solution
@@ -13,7 +11,6 @@ import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.view.BaseActivity
 import kr.hs.dgsw.juyeop.interview.databinding.ActivityMyQuestionReplyBinding
 import kr.hs.dgsw.juyeop.interview.view.dialog.VideoCheckDialog
-import kr.hs.dgsw.juyeop.interview.view.dialog.VideoTakeDialog
 import kr.hs.dgsw.juyeop.interview.viewmodel.activity.MyQuestionReplyViewModel
 import kr.hs.dgsw.juyeop.interview.viewmodelfactory.activity.MyQuestionReplyViewModelFactory
 import kr.hs.dgsw.juyeop.interview.widget.extension.getViewModel
@@ -40,8 +37,6 @@ class MyQuestionReplyActivity : BaseActivity<ActivityMyQuestionReplyBinding, MyQ
     override fun observerViewModel() {
         with(viewModel) {
             onBackEvent.observe(this@MyQuestionReplyActivity, Observer {
-                audioMediaPlayer.stop()
-                videoMediaPlayer.stop()
                 onBackPressed()
             })
             onAudioStartEvent.observe(this@MyQuestionReplyActivity, Observer {
@@ -58,9 +53,13 @@ class MyQuestionReplyActivity : BaseActivity<ActivityMyQuestionReplyBinding, MyQ
                 videoCheckDialog.arguments = bundle
                 videoCheckDialog.show(supportFragmentManager)
             })
-            onDeleteCompleteEvent.observe(this@MyQuestionReplyActivity, Observer {
-                onBackPressed()
-            })
         }
+    }
+
+    override fun onBackPressed() {
+        if (viewModel.audioMediaPlayer != null) viewModel.audioMediaPlayer!!.stop()
+        if (viewModel.videoMediaPlayer != null) viewModel.videoMediaPlayer!!.stop()
+
+        super.onBackPressed()
     }
 }

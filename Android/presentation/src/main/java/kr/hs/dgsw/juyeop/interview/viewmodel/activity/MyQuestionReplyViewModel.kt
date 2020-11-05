@@ -22,8 +22,8 @@ class MyQuestionReplyViewModel(
     lateinit var question: Question
     lateinit var solution: Solution
 
-    lateinit var audioMediaPlayer: MediaPlayer
-    lateinit var videoMediaPlayer: MediaPlayer
+    var audioMediaPlayer: MediaPlayer ?= null
+    var videoMediaPlayer: MediaPlayer ?= null
 
     var audioPlayerKind = 0
 
@@ -43,7 +43,6 @@ class MyQuestionReplyViewModel(
     val onAudioStartEvent = SingleLiveEvent<Unit>()
     val onAudioCompleteEvent = SingleLiveEvent<Unit>()
     val onVideoPlayEvent = SingleLiveEvent<Unit>()
-    val onDeleteCompleteEvent = SingleLiveEvent<Unit>()
 
     fun setData(question: Question, solution: Solution) {
         this.question = question
@@ -61,7 +60,7 @@ class MyQuestionReplyViewModel(
             }
             audioLayout.value = true
             audioName.value = "${solution.solution_audio!!.substring(0, 13)}.${solution.solution_audio!!.substring(solution.solution_audio!!.length-3)}"
-            audioTime.value = SimpleDateFormat("mm:ss", Locale.getDefault()).format(audioMediaPlayer.duration)
+            audioTime.value = SimpleDateFormat("mm:ss", Locale.getDefault()).format(audioMediaPlayer!!.duration)
         }
         if (!solution.solution_video.isNullOrEmpty()) {
             val videoPath = "${Constants.DEFAULT_HOST}video/${solution.solution_video}"
@@ -71,22 +70,22 @@ class MyQuestionReplyViewModel(
             }
             videoLayout.value = true
             videoName.value = "${solution.solution_video!!.substring(0, 13)}.${solution.solution_video!!.substring(solution.solution_video!!.length-3)}"
-            videoTime.value = SimpleDateFormat("mm:ss", Locale.getDefault()).format(videoMediaPlayer.duration)
+            videoTime.value = SimpleDateFormat("mm:ss", Locale.getDefault()).format(videoMediaPlayer!!.duration)
         }
     }
 
     fun audioPlayEvent() {
         if (audioPlayerKind == 0) {
-            audioMediaPlayer.start()
+            audioMediaPlayer!!.start()
             onAudioStartEvent.call()
             audioPlayerKind = 1
         } else {
-            audioMediaPlayer.stop()
-            audioMediaPlayer.prepare()
+            audioMediaPlayer!!.stop()
+            audioMediaPlayer!!.prepare()
             onAudioCompleteEvent.call()
             audioPlayerKind = 0
         }
-        audioMediaPlayer.setOnCompletionListener {
+            audioMediaPlayer!!.setOnCompletionListener {
             onAudioCompleteEvent.call()
             audioPlayerKind = 0
         }
@@ -95,7 +94,7 @@ class MyQuestionReplyViewModel(
     fun deleteEvent() {
         addDisposable(deleteSolutionUseCase.buildUseCaseObservable(DeleteSolutionUseCase.Params(solution.idx)), object : DisposableCompletableObserver() {
             override fun onComplete() {
-                onDeleteCompleteEvent.call()
+                onBackEvent.call()
             }
             override fun onError(e: Throwable) {
                 onErrorEvent.value = e

@@ -44,10 +44,10 @@
 
                         <ImageView
                             android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> viewModel.backEvent()}"
                             android:src="@drawable/ic_clear"
                             android:tint="@android:color/white"
-                            android:onClick="@{() -> viewModel.backEvent()}"
                             tools:ignore="ContentDescription" />
 
                         <View
