@@ -8,7 +8,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="kr.hs.dgsw.juyeop.interview.viewmodel.fragment.QuestionReplyViewModel" />
+            type="kr.hs.dgsw.juyeop.interview.viewmodel.activity.QuestionReplyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

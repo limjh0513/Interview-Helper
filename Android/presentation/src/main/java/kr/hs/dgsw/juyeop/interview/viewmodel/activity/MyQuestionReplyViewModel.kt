@@ -1,0 +1,139 @@
+package kr.hs.dgsw.juyeop.interview.viewmodel.activity
+
+import android.content.Context
+import android.media.MediaPlayer
+import androidx.lifecycle.MutableLiveData
+import io.reactivex.observers.DisposableCompletableObserver
+import kr.hs.dgsw.juyeop.data.util.Constants
+import kr.hs.dgsw.juyeop.domain.entity.Question
+import kr.hs.dgsw.juyeop.domain.entity.Solution
+import kr.hs.dgsw.juyeop.domain.usecase.solution.DeleteSolutionUseCase
+import kr.hs.dgsw.juyeop.interview.R
+import kr.hs.dgsw.juyeop.interview.base.viewmodel.BaseViewModel
+import kr.hs.dgsw.juyeop.interview.widget.SingleLiveEvent
+import java.text.SimpleDateFormat
+import java.util.*
+
+class MyQuestionReplyViewModel(
+    private val context: Context,
+    private val deleteSolutionUseCase: DeleteSolutionUseCase
+) : BaseViewModel() {
+
+    lateinit var question: Question
+    lateinit var solution: Solution
+
+    lateinit var audioMediaPlayer: MediaPlayer
+    lateinit var videoMediaPlayer: MediaPlayer
+
+    var audioPlayerKind = 0
+
+    val categoryName = MutableLiveData<String>()
+    val questionName = MutableLiveData<String>()
+    val solutionText = MutableLiveData<String>()
+
+    val audioLayout = MutableLiveData(false)
+    val audioName = MutableLiveData<String>()
+    val audioTime = MutableLiveData<String>()
+
+    val videoLayout = MutableLiveData(false)
+    val videoName = MutableLiveData<String>()
+    val videoTime = MutableLiveData<String>()
+
+    val onBackEvent = SingleLiveEvent<Unit>()
+    val onAudioStartEvent = SingleLiveEvent<Unit>()
+    val onAudioCompleteEvent = SingleLiveEvent<Unit>()
+    val onVideoPlayEvent = SingleLiveEvent<Unit>()
+    val onDeleteCompleteEvent = SingleLiveEvent<Unit>()
+
+    fun setData(question: Question, solution: Solution) {
+        this.question = question
+        this.solution = solution
+
+        categoryName.value = getCategoryName()
+        questionName.value = question.question
+        solutionText.value = solution.solution_text
+
+        if (!solution.solution_audio.isNullOrEmpty()) {
+            val audioPath = "${Constants.DEFAULT_HOST}audio/${solution.solution_audio}"
+            audioMediaPlayer = MediaPlayer().apply {
+                setDataSource(audioPath)
+                prepare()
+            }
+            audioLayout.value = true
+            audioName.value = "${solution.solution_audio!!.substring(0, 13)}.${solution.solution_audio!!.substring(solution.solution_audio!!.length-3)}"
+            audioTime.value = SimpleDateFormat("mm:ss", Locale.getDefault()).format(audioMediaPlayer.duration)
+        }
+        if (!solution.solution_video.isNullOrEmpty()) {
+            val videoPath = "${Constants.DEFAULT_HOST}video/${solution.solution_video}"
+            videoMediaPlayer = MediaPlayer().apply {
+                setDataSource(videoPath)
+                prepare()
+            }
+            videoLayout.value = true
+            videoName.value = "${solution.solution_video!!.substring(0, 13)}.${solution.solution_video!!.substring(solution.solution_video!!.length-3)}"
+            videoTime.value = SimpleDateFormat("mm:ss", Locale.getDefault()).format(videoMediaPlayer.duration)
+        }
+    }
+
+    fun audioPlayEvent() {
+        if (audioPlayerKind == 0) {
+            audioMediaPlayer.start()
+            onAudioStartEvent.call()
+            audioPlayerKind = 1
+        } else {
+            audioMediaPlayer.stop()
+            audioMediaPlayer.prepare()
+            onAudioCompleteEvent.call()
+            audioPlayerKind = 0
+        }
+        audioMediaPlayer.setOnCompletionListener {
+            onAudioCompleteEvent.call()
+            audioPlayerKind = 0
+        }
+    }
+
+    fun deleteEvent() {
+        addDisposable(deleteSolutionUseCase.buildUseCaseObservable(DeleteSolutionUseCase.Params(solution.idx)), object : DisposableCompletableObserver() {
+            override fun onComplete() {
+                onDeleteCompleteEvent.call()
+            }
+            override fun onError(e: Throwable) {
+                onErrorEvent.value = e
+            }
+        })
+    }
+
+    fun videoPlayEvent() {
+        onVideoPlayEvent.call()
+    }
+    fun backEvent() {
+        onBackEvent.call()
+    }
+
+    fun getCategoryName(): String {
+        var categoryResource = R.string.tab_question_first
+        when(question.category) {
+            1 -> categoryResource = R.string.tab_question_first
+            2 -> categoryResource = R.string.tab_question_second
+            3 -> categoryResource = R.string.tab_question_third
+            4 -> categoryResource = R.string.tab_question_fourth
+            5 -> categoryResource = R.string.tab_question_fifth
+            6 -> categoryResource = R.string.tab_question_sixth
+            7 -> categoryResource = R.string.tab_question_seventh
+        }
+        return context.resources.getString(categoryResource)
+    }
+    fun getColorResource(): Int {
+        var colorResource = R.color.colorCategory1
+        when(question.category) {
+            1 -> colorResource = R.color.colorCategory1
+            2 -> colorResource = R.color.colorCategory2
+            3 -> colorResource = R.color.colorCategory3
+            4 -> colorResource = R.color.colorCategory4
+            5 -> colorResource = R.color.colorCategory5
+            6 -> colorResource = R.color.colorCategory6
+            7 -> colorResource = R.color.colorCategory7
+        }
+        return colorResource
+    }
+}

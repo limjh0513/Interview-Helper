@@ -10,6 +10,8 @@ import kr.hs.dgsw.juyeop.interview.databinding.ActivityMyQuestionBinding
 import kr.hs.dgsw.juyeop.interview.viewmodel.activity.MyQuestionViewModel
 import kr.hs.dgsw.juyeop.interview.viewmodelfactory.activity.MyQuestionViewModelFactory
 import kr.hs.dgsw.juyeop.interview.widget.extension.getViewModel
+import kr.hs.dgsw.juyeop.interview.widget.extension.startActivity
+import kr.hs.dgsw.juyeop.interview.widget.extension.startActivityWithTwoValue
 import javax.inject.Inject
 
 class MyQuestionActivity : BaseActivity<ActivityMyQuestionBinding, MyQuestionViewModel>() {
@@ -38,8 +40,7 @@ class MyQuestionActivity : BaseActivity<ActivityMyQuestionBinding, MyQuestionVie
             questionItemAdapter.onReplyEvent.observe(this@MyQuestionActivity, Observer {
                 val questionData = it
                 val solutionData = allSolutionList.filter { solution -> solution.question_idx == it.idx }[0]
-
-                // 이 데이터를 다른 페이지로 전달하는 것이 좋을 것 같음 QuestionReplyActivity는 현재 너무 데이터가 복잡하게 구현되어있어 힘들다.
+                startActivityWithTwoValue(applicationContext, "question", "solution", MyQuestionReplyActivity::class.java, questionData, solutionData)
             })
         }
     }

@@ -1,17 +1,15 @@
 package kr.hs.dgsw.juyeop.interview.view.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_question_reply.*
 import kr.hs.dgsw.juyeop.domain.entity.Question
-import kr.hs.dgsw.juyeop.domain.entity.Solution
 import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.view.BaseActivity
 import kr.hs.dgsw.juyeop.interview.databinding.ActivityQuestionReplyBinding
 import kr.hs.dgsw.juyeop.interview.view.dialog.AudioRecordDialog
 import kr.hs.dgsw.juyeop.interview.view.dialog.VideoTakeDialog
-import kr.hs.dgsw.juyeop.interview.viewmodel.fragment.QuestionReplyViewModel
+import kr.hs.dgsw.juyeop.interview.viewmodel.activity.QuestionReplyViewModel
 import kr.hs.dgsw.juyeop.interview.viewmodelfactory.activity.QuestionReplyViewModelFactory
 import kr.hs.dgsw.juyeop.interview.widget.extension.getViewModel
 import kr.hs.dgsw.juyeop.interview.widget.extension.shortSnackbar
