@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.Observer
 import kotlinx.android.synthetic.main.activity_question_reply.*
 import kr.hs.dgsw.juyeop.domain.entity.Question
+import kr.hs.dgsw.juyeop.domain.entity.Solution
 import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.view.BaseActivity
 import kr.hs.dgsw.juyeop.interview.databinding.ActivityQuestionReplyBinding

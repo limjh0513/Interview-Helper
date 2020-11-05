@@ -4,23 +4,23 @@
     package="kr.hs.dgsw.juyeop.interview">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true"
         android:name=".widget.InterviewApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
+        <activity android:name=".view.activity.MySolutionActivity"></activity>
         <activity android:name=".view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +32,7 @@
         <activity android:name=".view.activity.SignUpActivity" />
         <activity android:name=".view.activity.SignUpCompleteActivity" />
         <activity android:name=".view.activity.MainActivity" />
-        <activity android:name=".view.activity.QuestionReplyActivity"/>
+        <activity android:name=".view.activity.QuestionReplyActivity" />
     </application>
 
 </manifest>

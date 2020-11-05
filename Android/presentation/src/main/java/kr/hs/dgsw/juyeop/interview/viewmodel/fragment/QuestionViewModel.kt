@@ -31,7 +31,7 @@ class QuestionViewModel(
 
     init {
         getAllQuestion()
-        questionItemAdapter.setList(questionItemList)
+        questionItemAdapter.setList(questionItemList, false)
     }
 
     fun getAllQuestion() {

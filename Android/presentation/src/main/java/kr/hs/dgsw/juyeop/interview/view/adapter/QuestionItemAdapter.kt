@@ -14,10 +14,13 @@ import kr.hs.dgsw.juyeop.interview.widget.navigator.QuestionItemNavigator
 class QuestionItemAdapter : RecyclerView.Adapter<QuestionItemAdapter.ViewHolder>(), QuestionItemNavigator {
 
     lateinit var questionItemList: List<Question>
+
+    var questionState = false
     val onReplyEvent = SingleLiveEvent<Question>()
 
-    fun setList(questionItemList: List<Question>) {
+    fun setList(questionItemList: List<Question>, questionState: Boolean) {
         this.questionItemList = questionItemList
+        this.questionState = questionState
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -48,6 +51,11 @@ class QuestionItemAdapter : RecyclerView.Adapter<QuestionItemAdapter.ViewHolder>
             binding.viewModel = viewModel
             binding.lockImageView.setColorFilter(binding.root.resources.getColor(viewModel.getColorResource(question.category)), android.graphics.PorterDuff.Mode.MULTIPLY)
             binding.answerTextView.setTextColor(binding.root.resources.getColor(viewModel.getColorResource(question.category)))
+
+            if (questionState) {
+                binding.lockImageView.setImageResource(R.drawable.ic_lock_open)
+                binding.answerTextView.text = binding.root.resources.getString(R.string.text_answer_check)
+            }
         }
     }
 }

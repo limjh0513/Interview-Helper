@@ -11,6 +11,7 @@
     <string name="text_sign_up_complete">회원가입을 완료했습니다</string>
     <string name="text_sign_up_complete2">상단의 버튼을 클릭하여 로그인 하시기 바랍니다</string>
     <string name="text_answer">답변하러 가기 ></string>
+    <string name="text_answer_check">답변확인 하기</string>
     <string name="text_save">저장하기</string>
     <string name="text_reply">답변 작성</string>
     <string name="text_audio">오디오 녹음</string>
@@ -30,7 +31,7 @@
     <string name="menu_home">홈</string>
     <string name="menu_question">면접 질문</string>
     <string name="menu_my_info">내 정보</string>
-    
+
     <string name="title_rank">선의의 경쟁</string>
     <string name="title_advice">우리들의 길잡이</string>
     <string name="title_recruit">앞으로의 미래</string>

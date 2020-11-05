@@ -6,6 +6,7 @@ import io.reactivex.observers.DisposableSingleObserver
 import kr.hs.dgsw.juyeop.domain.entity.User
 import kr.hs.dgsw.juyeop.domain.usecase.user.GetAllUserUseCase
 import kr.hs.dgsw.juyeop.interview.base.viewmodel.BaseViewModel
+import kr.hs.dgsw.juyeop.interview.widget.SingleLiveEvent
 import kr.hs.dgsw.juyeop.interview.widget.manager.SharedPreferencesManager
 
 class MyInfoViewModel(
@@ -15,6 +16,8 @@ class MyInfoViewModel(
 
     val name = MutableLiveData<String>()
     val solutionCount = MutableLiveData<String>()
+
+    val onMySolutionEvent = SingleLiveEvent<Unit>()
 
     init {
         getAllUser()
@@ -33,5 +36,9 @@ class MyInfoViewModel(
                 onErrorEvent.value = e
             }
         })
+    }
+
+    fun mySolutionEvent() {
+        onMySolutionEvent.call()
     }
 }

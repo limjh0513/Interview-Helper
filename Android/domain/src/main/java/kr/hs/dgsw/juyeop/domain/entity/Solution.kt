@@ -1,5 +1,7 @@
 package kr.hs.dgsw.juyeop.domain.entity
 
+import java.io.Serializable
+
 data class Solution(
     val idx: Int,
     val user_id: String,
@@ -8,4 +10,4 @@ data class Solution(
     val solution_audio: String?,
     val solution_video: String?,
     val solution_at: String
-)
+): Serializable
