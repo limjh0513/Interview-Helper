@@ -6,11 +6,14 @@ import kotlinx.android.synthetic.main.activity_my_question_reply.*
 import kotlinx.android.synthetic.main.activity_question_reply.*
 import kotlinx.android.synthetic.main.activity_question_reply.backgroundLayout
 import kotlinx.android.synthetic.main.dialog_audio_record.*
+import kr.hs.dgsw.juyeop.data.util.Constants
 import kr.hs.dgsw.juyeop.domain.entity.Question
 import kr.hs.dgsw.juyeop.domain.entity.Solution
 import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.view.BaseActivity
 import kr.hs.dgsw.juyeop.interview.databinding.ActivityMyQuestionReplyBinding
+import kr.hs.dgsw.juyeop.interview.view.dialog.VideoCheckDialog
+import kr.hs.dgsw.juyeop.interview.view.dialog.VideoTakeDialog
 import kr.hs.dgsw.juyeop.interview.viewmodel.activity.MyQuestionReplyViewModel
 import kr.hs.dgsw.juyeop.interview.viewmodelfactory.activity.MyQuestionReplyViewModelFactory
 import kr.hs.dgsw.juyeop.interview.widget.extension.getViewModel
@@ -48,7 +51,12 @@ class MyQuestionReplyActivity : BaseActivity<ActivityMyQuestionReplyBinding, MyQ
                 audioImageView.setImageDrawable(resources.getDrawable(R.drawable.ic_play))
             })
             onVideoPlayEvent.observe(this@MyQuestionReplyActivity, Observer {
-                // 비디오를 보여줄 다이어로그 화면으로 이동
+                val bundle = Bundle()
+                bundle.putString("videoPath", "${Constants.DEFAULT_HOST}video/${solution.solution_video}")
+
+                val videoCheckDialog = VideoCheckDialog()
+                videoCheckDialog.arguments = bundle
+                videoCheckDialog.show(supportFragmentManager)
             })
             onDeleteCompleteEvent.observe(this@MyQuestionReplyActivity, Observer {
                 onBackPressed()

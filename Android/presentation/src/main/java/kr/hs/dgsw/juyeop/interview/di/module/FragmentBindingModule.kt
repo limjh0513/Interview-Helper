@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import kr.hs.dgsw.juyeop.interview.di.scope.PerFragment
 import kr.hs.dgsw.juyeop.interview.view.dialog.AudioRecordDialog
+import kr.hs.dgsw.juyeop.interview.view.dialog.VideoCheckDialog
 import kr.hs.dgsw.juyeop.interview.view.dialog.VideoTakeDialog
 import kr.hs.dgsw.juyeop.interview.view.fragment.*
 
@@ -45,4 +46,8 @@ abstract class FragmentBindingModule {
     @PerFragment
     @ContributesAndroidInjector
     abstract fun bindingRecommandFragment(): RecommandFragment
+
+    @PerFragment
+    @ContributesAndroidInjector
+    abstract fun bindingVideoCheckDialog(): VideoCheckDialog
 }
