@@ -6,37 +6,36 @@ import com.robinhood.ticker.TickerUtils
 import kotlinx.android.synthetic.main.fragment_question.*
 import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.view.BaseActivity
-import kr.hs.dgsw.juyeop.interview.databinding.ActivityMySolutionBinding
-import kr.hs.dgsw.juyeop.interview.viewmodel.activity.MySolutionViewModel
-import kr.hs.dgsw.juyeop.interview.viewmodelfactory.activity.MySolutionViewModelFactory
+import kr.hs.dgsw.juyeop.interview.databinding.ActivityMyQuestionBinding
+import kr.hs.dgsw.juyeop.interview.viewmodel.activity.MyQuestionViewModel
+import kr.hs.dgsw.juyeop.interview.viewmodelfactory.activity.MyQuestionViewModelFactory
 import kr.hs.dgsw.juyeop.interview.widget.extension.getViewModel
-import kr.hs.dgsw.juyeop.interview.widget.extension.startActivityWithTwoValue
 import javax.inject.Inject
 
-class MySolutionActivity : BaseActivity<ActivityMySolutionBinding, MySolutionViewModel>() {
+class MyQuestionActivity : BaseActivity<ActivityMyQuestionBinding, MyQuestionViewModel>() {
 
     private var colorResource = R.color.colorCategory1
     private val NUMBER_LIST = TickerUtils.provideNumberList()
 
     @Inject
-    lateinit var viewModelFactory: MySolutionViewModelFactory
+    lateinit var viewModelFactory: MyQuestionViewModelFactory
 
-    override val viewModel: MySolutionViewModel
+    override val viewModel: MyQuestionViewModel
         get() = getViewModel(viewModelFactory)
 
     override fun observerViewModel() {
         with(viewModel) {
-            category.observe(this@MySolutionActivity, Observer {
+            category.observe(this@MyQuestionActivity, Observer {
                 getAllSolution()
                 backgroundCardView.setCardBackgroundColor(resources.getColor(colorResource))
             })
-            onCombinEvent.observe(this@MySolutionActivity, Observer {
+            onCombinEvent.observe(this@MyQuestionActivity, Observer {
                 questionCountTextView.setCharacterLists(NUMBER_LIST)
 
                 val questionCount = "${questionItemList.size}개"
                 questionCountTextView.text = questionCount
             })
-            questionItemAdapter.onReplyEvent.observe(this@MySolutionActivity, Observer {
+            questionItemAdapter.onReplyEvent.observe(this@MyQuestionActivity, Observer {
                 val questionData = it
                 val solutionData = allSolutionList.filter { solution -> solution.question_idx == it.idx }[0]
 

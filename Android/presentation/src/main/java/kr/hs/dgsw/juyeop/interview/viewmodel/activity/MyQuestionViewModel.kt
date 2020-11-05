@@ -13,7 +13,7 @@ import kr.hs.dgsw.juyeop.interview.view.adapter.QuestionItemAdapter
 import kr.hs.dgsw.juyeop.interview.widget.SingleLiveEvent
 import kr.hs.dgsw.juyeop.interview.widget.manager.SharedPreferencesManager
 
-class MySolutionViewModel(
+class MyQuestionViewModel(
     private val context: Context,
     private val getAllSolutionUseCase: GetAllSolutionUseCase,
     private val getAllQuestionUseCase: GetAllQuestionUseCase

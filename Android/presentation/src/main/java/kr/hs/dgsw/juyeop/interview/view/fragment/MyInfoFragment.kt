@@ -3,7 +3,7 @@ package kr.hs.dgsw.juyeop.interview.view.fragment
 import androidx.lifecycle.Observer
 import kr.hs.dgsw.juyeop.interview.base.view.BaseFragment
 import kr.hs.dgsw.juyeop.interview.databinding.FragmentMyInfoBinding
-import kr.hs.dgsw.juyeop.interview.view.activity.MySolutionActivity
+import kr.hs.dgsw.juyeop.interview.view.activity.MyQuestionActivity
 import kr.hs.dgsw.juyeop.interview.viewmodel.fragment.MyInfoViewModel
 import kr.hs.dgsw.juyeop.interview.viewmodelfactory.fragment.MyInfoViewModelFactory
 import kr.hs.dgsw.juyeop.interview.widget.extension.getViewModel
@@ -21,7 +21,7 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding, MyInfoViewModel>() {
     override fun observerViewModel() {
         with(viewModel) {
             onMySolutionEvent.observe(this@MyInfoFragment, Observer {
-                startActivity(requireContext(), MySolutionActivity::class.java)
+                startActivity(requireContext(), MyQuestionActivity::class.java)
             })
         }
     }

@@ -7,7 +7,7 @@ import kr.hs.dgsw.juyeop.domain.usecase.question.GetAllQuestionUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.solution.GetAllSolutionUseCase
 import javax.inject.Inject
 
-class MySolutionViewModelFactory @Inject constructor(
+class MyQuestionViewModelFactory @Inject constructor(
     private val context: Context,
     private val getAllSolutionUseCase: GetAllSolutionUseCase,
     private val getAllQuestionUseCase: GetAllQuestionUseCase
