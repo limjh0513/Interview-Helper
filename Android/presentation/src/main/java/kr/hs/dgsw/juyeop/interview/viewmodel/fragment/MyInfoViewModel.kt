@@ -19,10 +19,6 @@ class MyInfoViewModel(
 
     val onMySolutionEvent = SingleLiveEvent<Unit>()
 
-    init {
-        getAllUser()
-    }
-
     fun getAllUser() {
         addDisposable(getAllUserUseCase.buildUseCaseObservable(), object : DisposableSingleObserver<List<User>>() {
             override fun onSuccess(userList: List<User>) {

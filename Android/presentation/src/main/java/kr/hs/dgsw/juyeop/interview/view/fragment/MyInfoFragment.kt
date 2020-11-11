@@ -25,4 +25,9 @@ class MyInfoFragment : BaseFragment<FragmentMyInfoBinding, MyInfoViewModel>() {
             })
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllUser()
+    }
 }

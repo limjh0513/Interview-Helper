@@ -33,6 +33,7 @@
     <string name="text_my_info_change">개인 설정 / 서비스 설정</string>
     <string name="text_my_solution_count">답변한 질문 수</string>
     <string name="text_my_solution_check">답변한 질문 확인</string>
+    <string name="text_ready">현재 준비 중</string>
 
     <string name="menu_home">홈</string>
     <string name="menu_question">면접 질문</string>

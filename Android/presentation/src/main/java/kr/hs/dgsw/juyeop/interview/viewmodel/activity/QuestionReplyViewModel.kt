@@ -103,6 +103,7 @@ class QuestionReplyViewModel(
                         saveVideoEvent()
                     }
                     override fun onError(e: Throwable) {
+                        saveVideoEvent()
                         onErrorEvent.value = e
                     }
                 })
@@ -119,6 +120,7 @@ class QuestionReplyViewModel(
                         saveSolutionEvent()
                     }
                     override fun onError(e: Throwable) {
+                        saveSolutionEvent()
                         onErrorEvent.value = e
                     }
                 })
