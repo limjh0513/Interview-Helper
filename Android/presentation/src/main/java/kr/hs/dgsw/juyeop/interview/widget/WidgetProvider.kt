@@ -2,13 +2,11 @@ package kr.hs.dgsw.juyeop.interview.widget
 
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
-import android.util.Log
 import android.view.View
 import android.widget.RemoteViews
 import android.widget.Toast
@@ -19,7 +17,7 @@ import kr.hs.dgsw.juyeop.interview.widget.manager.SharedPreferencesManager
 class WidgetProvider : AppWidgetProvider() {
 
     private val UPDATE = "android.appwidget.action.APPWIDGET_UPDATE"
-    private val DELETE = "android.appwidget.action.APPWIDGET_DISABLED"
+    private val DISABLED = "android.appwidget.action.APPWIDGET_DISABLED"
     private val ENTER = "android.intent.action.enter"
     private val REFRESH = "android.intent.action.refresh"
 
@@ -42,7 +40,7 @@ class WidgetProvider : AppWidgetProvider() {
                 alarmManager = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
                 alarmManager.set(AlarmManager.RTC, firstTime, pendingIntent)
             }
-            DELETE -> {
+            DISABLED -> {
                 removePreviousAlarm()
             }
             ENTER -> {
@@ -97,11 +95,11 @@ class WidgetProvider : AppWidgetProvider() {
             views.setViewVisibility(R.id.refreshImageView, View.INVISIBLE)
             views.setViewVisibility(R.id.questionCountTextView, View.INVISIBLE)
         } else {
-            views.setTextViewText(
-                R.id.questionInfoTextView, "${SharedPreferencesManager.getUserId(context)}님이 답변한\n인터뷰 헬퍼의 면접 질문 수"
-            )
+            views.setTextViewText(R.id.questionInfoTextView, "${SharedPreferencesManager.getUserId(context)}님이 답변한\n인터뷰 헬퍼의 면접 질문 수")
             views.setViewVisibility(R.id.refreshImageView, View.VISIBLE)
             views.setViewVisibility(R.id.questionCountTextView, View.VISIBLE)
+
+            // UseCase 작업 도입해야함
         }
         views.setOnClickPendingIntent(R.id.layout, enterAction(context))
         views.setOnClickPendingIntent(R.id.refreshImageView, refreshAction(context))
