@@ -6,13 +6,15 @@ import androidx.lifecycle.ViewModelProvider
 import kr.hs.dgsw.juyeop.domain.usecase.solution.PostSolutionUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.upload.UploadAudioUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.upload.UploadVideoUseCase
+import kr.hs.dgsw.juyeop.domain.usecase.user.GetUserUseCase
 import javax.inject.Inject
 
 class QuestionReplyViewModelFactory @Inject constructor(
     private val context: Context,
     private val uploadAudioUseCase: UploadAudioUseCase,
     private val uploadVideoUseCase: UploadVideoUseCase,
-    private val postSolutionUseCase: PostSolutionUseCase
+    private val postSolutionUseCase: PostSolutionUseCase,
+    private val getUserUseCase: GetUserUseCase
 ): ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
@@ -20,7 +22,8 @@ class QuestionReplyViewModelFactory @Inject constructor(
             Context::class.java,
             UploadAudioUseCase::class.java,
             UploadVideoUseCase::class.java,
-            PostSolutionUseCase::class.java
-        ).newInstance(context, uploadAudioUseCase, uploadVideoUseCase, postSolutionUseCase)
+            PostSolutionUseCase::class.java,
+            GetUserUseCase::class.java
+        ).newInstance(context, uploadAudioUseCase, uploadVideoUseCase, postSolutionUseCase, getUserUseCase)
     }
 }

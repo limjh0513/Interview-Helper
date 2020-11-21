@@ -18,7 +18,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     @Inject
     lateinit var viewModelFactory: MainViewModelFactory
 
-    override val viewModel: MainViewModel
+    public override val viewModel: MainViewModel
         get() = getViewModel(viewModelFactory)
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,19 +4,24 @@ import android.content.Context
 import android.media.MediaPlayer
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.observers.DisposableCompletableObserver
+import io.reactivex.observers.DisposableSingleObserver
 import kr.hs.dgsw.juyeop.data.util.Constants
 import kr.hs.dgsw.juyeop.domain.entity.Question
 import kr.hs.dgsw.juyeop.domain.entity.Solution
+import kr.hs.dgsw.juyeop.domain.entity.User
 import kr.hs.dgsw.juyeop.domain.usecase.solution.DeleteSolutionUseCase
+import kr.hs.dgsw.juyeop.domain.usecase.user.GetUserUseCase
 import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.viewmodel.BaseViewModel
 import kr.hs.dgsw.juyeop.interview.widget.SingleLiveEvent
+import kr.hs.dgsw.juyeop.interview.widget.manager.SharedPreferencesManager
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MyQuestionReplyViewModel(
     private val context: Context,
-    private val deleteSolutionUseCase: DeleteSolutionUseCase
+    private val deleteSolutionUseCase: DeleteSolutionUseCase,
+    private val getUserUseCase: GetUserUseCase
 ) : BaseViewModel() {
 
     lateinit var question: Question
@@ -94,12 +99,25 @@ class MyQuestionReplyViewModel(
     fun deleteEvent() {
         addDisposable(deleteSolutionUseCase.buildUseCaseObservable(DeleteSolutionUseCase.Params(solution.idx)), object : DisposableCompletableObserver() {
             override fun onComplete() {
-                onBackEvent.call()
+                setUsersolution()
             }
             override fun onError(e: Throwable) {
                 onErrorEvent.value = e
             }
         })
+    }
+    fun setUsersolution() {
+        val userId = SharedPreferencesManager.getUserId(context)
+        addDisposable(getUserUseCase.buildUseCaseObservable(GetUserUseCase.Params(userId!!)),
+            object : DisposableSingleObserver<User>() {
+                override fun onSuccess(user: User) {
+                    SharedPreferencesManager.setUserSolution(context, user.solution)
+                    onBackEvent.call()
+                }
+                override fun onError(e: Throwable) {
+                    onErrorEvent.value = e
+                }
+            })
     }
 
     fun videoPlayEvent() {

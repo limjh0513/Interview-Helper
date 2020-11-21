@@ -10,10 +10,12 @@ import com.gun0912.tedpermission.TedPermission
 import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableSingleObserver
 import kr.hs.dgsw.juyeop.domain.entity.Question
+import kr.hs.dgsw.juyeop.domain.entity.User
 import kr.hs.dgsw.juyeop.domain.request.solution.PostSolutionReqeust
 import kr.hs.dgsw.juyeop.domain.usecase.solution.PostSolutionUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.upload.UploadAudioUseCase
 import kr.hs.dgsw.juyeop.domain.usecase.upload.UploadVideoUseCase
+import kr.hs.dgsw.juyeop.domain.usecase.user.GetUserUseCase
 import kr.hs.dgsw.juyeop.interview.R
 import kr.hs.dgsw.juyeop.interview.base.viewmodel.BaseViewModel
 import kr.hs.dgsw.juyeop.interview.widget.SingleLiveEvent
@@ -27,7 +29,8 @@ class QuestionReplyViewModel(
     private val context: Context,
     private val uploadAudioUseCase: UploadAudioUseCase,
     private val uploadVideoUseCase: UploadVideoUseCase,
-    private val postSolutionUseCase: PostSolutionUseCase
+    private val postSolutionUseCase: PostSolutionUseCase,
+    private val getUserUseCase: GetUserUseCase
 ) : BaseViewModel() {
 
     lateinit var question: Question
@@ -136,7 +139,7 @@ class QuestionReplyViewModel(
             addDisposable(postSolutionUseCase.buildUseCaseObservable(PostSolutionUseCase.Params(postSolutionReqeust)),
                 object : DisposableCompletableObserver() {
                     override fun onComplete() {
-                        onCompleteEvent.call()
+                        setUsersolution()
                     }
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
@@ -145,6 +148,19 @@ class QuestionReplyViewModel(
         } else {
             onEmptyEvent.call()
         }
+    }
+    fun setUsersolution() {
+        val userId = SharedPreferencesManager.getUserId(context)
+        addDisposable(getUserUseCase.buildUseCaseObservable(GetUserUseCase.Params(userId!!)),
+            object : DisposableSingleObserver<User>() {
+                override fun onSuccess(user: User) {
+                    SharedPreferencesManager.setUserSolution(context, user.solution)
+                    onCompleteEvent.call()
+                }
+                override fun onError(e: Throwable) {
+                    onErrorEvent.value = e
+                }
+            })
     }
 
     fun permissionSetting() {

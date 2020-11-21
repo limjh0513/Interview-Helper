@@ -7,19 +7,19 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.util.Log
 import android.view.View
 import android.widget.RemoteViews
 import android.widget.Toast
 import kr.hs.dgsw.juyeop.interview.R
-import kr.hs.dgsw.juyeop.interview.view.activity.MainActivity
+import kr.hs.dgsw.juyeop.interview.view.activity.SplashActivity
 import kr.hs.dgsw.juyeop.interview.widget.manager.SharedPreferencesManager
 
-class WidgetProvider : AppWidgetProvider() {
+class WidgetProvider: AppWidgetProvider() {
 
     private val UPDATE = "android.appwidget.action.APPWIDGET_UPDATE"
     private val DISABLED = "android.appwidget.action.APPWIDGET_DISABLED"
     private val ENTER = "android.intent.action.enter"
-    private val REFRESH = "android.intent.action.refresh"
 
     private lateinit var pendingIntent: PendingIntent
     private lateinit var alarmManager: AlarmManager
@@ -44,14 +44,7 @@ class WidgetProvider : AppWidgetProvider() {
                 removePreviousAlarm()
             }
             ENTER -> {
-                context!!.startActivity(Intent(context, MainActivity::class.java).addFlags(FLAG_ACTIVITY_NEW_TASK))
-                Toast.makeText(context, "ENTER Action 입니다.", Toast.LENGTH_SHORT).show()
-            }
-            REFRESH -> {
-                Toast.makeText(context, "REFRESH Action 입니다.", Toast.LENGTH_SHORT).show()
-            }
-            else -> {
-                Toast.makeText(context, "그 외의 Action 입니다.", Toast.LENGTH_SHORT).show()
+                context!!.startActivity(Intent(context, SplashActivity::class.java).addFlags(FLAG_ACTIVITY_NEW_TASK))
             }
         }
     }
@@ -80,29 +73,18 @@ class WidgetProvider : AppWidgetProvider() {
         return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
-    private fun refreshAction(context: Context?): PendingIntent {
-        val intent = Intent(context, WidgetProvider::class.java)
-        intent.action = REFRESH
-
-        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-    }
-
     private fun addViews(context: Context?): RemoteViews {
         val views = RemoteViews(context?.packageName, R.layout.widget)
 
         if (SharedPreferencesManager.getUserId(context!!).isNullOrEmpty()) {
             views.setTextViewText(R.id.questionInfoTextView, "서비스를 로그인 후\n이용해주시기 바랍니다.")
-            views.setViewVisibility(R.id.refreshImageView, View.INVISIBLE)
             views.setViewVisibility(R.id.questionCountTextView, View.INVISIBLE)
         } else {
             views.setTextViewText(R.id.questionInfoTextView, "${SharedPreferencesManager.getUserId(context)}님이 답변한\n인터뷰 헬퍼의 면접 질문 수")
-            views.setViewVisibility(R.id.refreshImageView, View.VISIBLE)
             views.setViewVisibility(R.id.questionCountTextView, View.VISIBLE)
-
-            // UseCase 작업 도입해야함
+            views.setTextViewText(R.id.questionCountTextView, "${SharedPreferencesManager.getUserSolution(context)}개")
         }
         views.setOnClickPendingIntent(R.id.layout, enterAction(context))
-        views.setOnClickPendingIntent(R.id.refreshImageView, refreshAction(context))
         return views
     }
 

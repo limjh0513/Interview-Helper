@@ -32,7 +32,6 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.enter"/>
-                <action android:name="android.intent.action.refresh"/>
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
