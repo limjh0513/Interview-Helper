@@ -2,7 +2,6 @@ package kr.hs.dgsw.juyeop.interview.base.view
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import dagger.android.support.DaggerAppCompatActivity
