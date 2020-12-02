@@ -10,7 +10,7 @@ object SharedPreferencesManager {
     fun getUserId(context: Context): String? {
         return getDefaultSharedPreferences(context).getString(USER_ID, null)
     }
-    fun setUserId(context: Context, userId: String) {
+    fun setUserId(context: Context, userId: String?) {
         getDefaultSharedPreferences(context).edit().putString(USER_ID, userId).apply()
     }
 

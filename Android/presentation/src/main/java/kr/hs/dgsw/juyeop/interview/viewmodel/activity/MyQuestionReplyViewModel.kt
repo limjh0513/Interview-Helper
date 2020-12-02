@@ -97,11 +97,13 @@ class MyQuestionReplyViewModel(
     }
 
     fun deleteEvent() {
+        isLoading.value = true
         addDisposable(deleteSolutionUseCase.buildUseCaseObservable(DeleteSolutionUseCase.Params(solution.idx)), object : DisposableCompletableObserver() {
             override fun onComplete() {
                 setUsersolution()
             }
             override fun onError(e: Throwable) {
+                isLoading.value = false
                 onErrorEvent.value = e
             }
         })
@@ -113,8 +115,11 @@ class MyQuestionReplyViewModel(
                 override fun onSuccess(user: User) {
                     SharedPreferencesManager.setUserSolution(context, user.solution)
                     onBackEvent.call()
+
+                    isLoading.value = false
                 }
                 override fun onError(e: Throwable) {
+                    isLoading.value = false
                     onErrorEvent.value = e
                 }
             })

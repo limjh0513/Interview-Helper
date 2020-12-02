@@ -17,6 +17,7 @@ class MyInfoViewModel(
     val name = MutableLiveData<String>()
     val solutionCount = MutableLiveData<String>()
 
+    val onLogoutEvent = SingleLiveEvent<Unit>()
     val onMySolutionEvent = SingleLiveEvent<Unit>()
 
     fun getAllUser() {
@@ -34,6 +35,9 @@ class MyInfoViewModel(
         })
     }
 
+    fun logoutEvent() {
+        onLogoutEvent.call()
+    }
     fun mySolutionEvent() {
         onMySolutionEvent.call()
     }

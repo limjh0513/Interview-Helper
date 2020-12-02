@@ -95,6 +95,7 @@ class QuestionReplyViewModel(
     }
 
     fun saveEvent() {
+        isLoading.value = true
         saveAudioEvent()
     }
     fun saveAudioEvent() {
@@ -107,6 +108,8 @@ class QuestionReplyViewModel(
                     }
                     override fun onError(e: Throwable) {
                         saveVideoEvent()
+
+                        isLoading.value = false
                         onErrorEvent.value = e
                     }
                 })
@@ -124,6 +127,8 @@ class QuestionReplyViewModel(
                     }
                     override fun onError(e: Throwable) {
                         saveSolutionEvent()
+
+                        isLoading.value = false
                         onErrorEvent.value = e
                     }
                 })
@@ -142,10 +147,12 @@ class QuestionReplyViewModel(
                         setUsersolution()
                     }
                     override fun onError(e: Throwable) {
-                        e.printStackTrace()
+                        isLoading.value = false
+                        onErrorEvent.value = e
                     }
                 })
         } else {
+            isLoading.value = false
             onEmptyEvent.call()
         }
     }
@@ -154,10 +161,13 @@ class QuestionReplyViewModel(
         addDisposable(getUserUseCase.buildUseCaseObservable(GetUserUseCase.Params(userId!!)),
             object : DisposableSingleObserver<User>() {
                 override fun onSuccess(user: User) {
+                    isLoading.value = false
+
                     SharedPreferencesManager.setUserSolution(context, user.solution)
                     onCompleteEvent.call()
                 }
                 override fun onError(e: Throwable) {
+                    isLoading.value = false
                     onErrorEvent.value = e
                 }
             })
