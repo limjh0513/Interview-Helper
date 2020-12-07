@@ -1,5 +1,5 @@
 # Interview Helper
-🎙 취준생들이 면접 준비를 잘할 수 있도록 도우미 역할을 해주는 서비스입니다.
+🎤 취준생들이 면접 준비를 잘할 수 있도록 도우미 역할을 해주는 서비스입니다.
 
 > Project Target : Job Seeker<br/>
 > 기업 및 직무별 다양한 종류의 면접 예상 질문을 제공합니다.<br/>
@@ -15,6 +15,7 @@
 - 면접 전문가들의 면접 팁 제공 및 관련 정보 전수
 - 기업 및 직무별 다양한 종류의 면접 예상 질문 제공
 - 면접 질문에 대한 자신만의 생각을 다양한 형태로 답변 (텍스트, 음성녹음, 동영상)
+- 현재 내가 답변한 면접 질문 수를 빠르게 확인할 수 있도록 전용 앱 위젯 제공
 
 ## Stack
 |                      | Android     | Server        | Design |
@@ -36,3 +37,13 @@
 ## Design Pattern
 - MVVM 디자인 패턴을 활용하여 구현했습니다.
 - CleanArchitecture 구조에 맞게 코드를 구현했습니다.
+
+## UI/UX
+<div>
+<img width="130" src="https://user-images.githubusercontent.com/49600974/101313259-2b261580-3899-11eb-9c3d-437039a3e497.png"></img>
+<img width="130" src="https://user-images.githubusercontent.com/49600974/101313265-2d886f80-3899-11eb-8686-8f6aad7e7882.png"></img>
+<img width="130" src="https://user-images.githubusercontent.com/49600974/101313268-2f523300-3899-11eb-8f7f-78174ea537f8.png"></img>
+<img width="130" src="https://user-images.githubusercontent.com/49600974/101313275-30836000-3899-11eb-9a9c-1e4e2e070901.png"></img>
+<img width="130" src="https://user-images.githubusercontent.com/49600974/101313279-311bf680-3899-11eb-8b89-0860149de7a7.png"></img>
+<img width="130" src="https://user-images.githubusercontent.com/49600974/101313282-324d2380-3899-11eb-8879-f42172c07543.png"></img>
+</div>
