@@ -25,6 +25,7 @@
 | Develop Tool     | Android Studio  | Intelli J | Adobe XD |
 
 ## Skill
+#### 클라이언트 (Android 플랫폼)
 - <a href="https://github.com/google/gson">Gson</a>
 - <a href="https://github.com/robinhood/ticker">Ticker</a>
 - <a href="https://github.com/ReactiveX/RxJava">RxJava2</a>
@@ -33,6 +34,10 @@
 - <a href="https://github.com/square/okhttp">OkHttp3</a>
 - <a href="https://developer.android.com/jetpack/androidx/releases/lifecycle?hl=ko">ViewModel</a>
 - <a href="https://github.com/ParkSangGwon/TedPermission">TedPermission</a>
+
+#### 백엔드 (Server 플랫폼)
+- <a href="https://github.com/mysql">MySQL</a>
+- <a href="https://github.com/spring-projects/spring-boot">Spring Boot</a>
 
 ## Design Pattern
 - MVVM 디자인 패턴을 활용하여 구현했습니다.
