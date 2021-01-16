@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/49600974/104805712-7a0a8780-5815-11eb-9f77-8d6ef7b8e9c4.png"></img>
+
 # Interview Helper
 🎤 취준생들이 면접 준비를 잘할 수 있도록 도우미 역할을 해주는 서비스입니다
 
