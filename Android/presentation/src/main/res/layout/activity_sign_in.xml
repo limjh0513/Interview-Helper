@@ -90,6 +90,8 @@
                 android:onClick="@{() -> viewModel.signInEvent()}"/>
         </LinearLayout>
 
+        // 개인적인 의견인데 연두색에 하얀색이고, 크기도 작은 것 같아서 눈에 잘 띄지 않을 것 같은데
+        // textSize를 더 키우면 좋을 것 같아요
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

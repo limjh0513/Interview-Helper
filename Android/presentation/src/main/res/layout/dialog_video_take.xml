@@ -64,6 +64,7 @@
                 </LinearLayout>
             </LinearLayout>
 
+            // video_check.xml에 있는 SurfaceView와 id 중복이 되네요
             <SurfaceView
                 android:id="@+id/container"
                 android:layout_width="match_parent"

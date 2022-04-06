@@ -38,6 +38,8 @@ class AdviceItemAdapter : RecyclerView.Adapter<AdviceItemAdapter.ViewHolder>() {
         val viewModel = AdviceItemViewModel()
 
         fun bind(advice: Advice, userItemList: List<User>) {
+            //viewModel에서 MutableLiveData를 만들어서 viewModel에 advice 전달 후 xml에 적용하는거 보다
+            //이 함수에서 처리하고 variable에 advice 하나 만들어서 @{advice.name} 이런식으로 하는게 더 나아 보이네요
             viewModel.bind(advice, userItemList)
             binding.viewModel = viewModel
         }

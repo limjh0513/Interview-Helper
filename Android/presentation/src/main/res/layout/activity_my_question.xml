@@ -98,6 +98,8 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    // string, color 관리하는 김에 value 폴더에 dimen 파일도 만들어서
+                    // textSize도 관리해주면 좋을 것 같아요
                     <TextView
                         android:id="@+id/questionInfoTextView"
                         android:layout_width="0dp"

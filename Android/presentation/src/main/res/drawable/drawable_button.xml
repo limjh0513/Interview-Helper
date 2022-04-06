@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-
     <solid android:color="@color/colorPrimary"/>
     <corners android:radius="5dp"/>
+
+    // drawable에 있는 파일들이 drawable, drawable-24에 다양하게 들어가있는데
+    // v24는 Android api 24(Nougat)버전 이상만 사용하는 파일이기 때문에 수정하면 좋을 것 같아요
 </shape>

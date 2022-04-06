@@ -3,6 +3,7 @@ package kr.hs.dgsw.juyeop.interview.widget.manager
 import android.content.Context
 import android.content.SharedPreferences
 
+
 object SharedPreferencesManager {
     private const val USER_ID = "userId"
     private const val USER_SOLUTION = "userSolution"

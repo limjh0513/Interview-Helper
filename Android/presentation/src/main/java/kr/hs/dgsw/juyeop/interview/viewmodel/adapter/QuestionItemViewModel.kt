@@ -20,6 +20,8 @@ class QuestionItemViewModel : BaseItemViewModel<QuestionItemNavigator>() {
         getNavigator().replyEvent(question)
     }
 
+
+    // UI 관련 코드는 ViewModel보다는 View에서, 또 이런거는 xml variable 부분에서 int 변수 하나 만들고 bindingAdapter로 사용해도 되지 않을까요?
     fun getColorResource(category: Int): Int {
         var colorResource = R.color.colorCategory1
         when(category) {
