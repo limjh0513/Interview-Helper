@@ -31,6 +31,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     fun tabSelectedEvent() {
+        // fragment 이동하려고 fragment 만들고 transcation 하고 있는데, navigation component 사용해서 더 효율적으로 할 수 있을 것 같아요
+
         var fragmentTranscation = activity?.supportFragmentManager?.beginTransaction()
         fragmentTranscation?.replace(R.id.frameLayout, rankFragment)?.commitAllowingStateLoss()
         tabsTextView.text = resources.getString(viewModel.getTitleResource(tabs.selectedTabPosition))

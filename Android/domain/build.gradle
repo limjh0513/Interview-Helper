@@ -50,6 +50,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttpVersion"
 
     // LiveData & ViewModel
+    // data, domain layer에서 viewModel, liveData를 implementation해서 사용하는 부분이 없어보는데, 사용하지 않는다면 삭제하는게 좋을 것 같아요~
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifeCycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifeCycleVersion"
 }

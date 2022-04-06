@@ -22,6 +22,12 @@ class MyQuestionViewModel(
     var allQuestionList = ArrayList<Question>()
     var allSolutionList = ArrayList<Solution>()
 
+    /*
+        viewModel에서 Adapter를 처리해주는 이유가 있을까요? 궁금해서 코드 리뷰중에 질문 드립니다 ㅎㅎ
+        그리고 저번에 알려주신 ListAdapter도 잘 쓰고 있어요~~ 코드보니까 idx 비교하면서 filter한 다음 RecyclerView에 데이터 넣으려고
+        arraylist clear 했다가 다시 addAll하고 notifyDataSetChanged 하는데 이럴 때 ListAdapter 쓰면 가장 잘 썼다고 할 수 있지 않을까요?
+    */
+
     var questionItemList = ArrayList<Question>()
     var questionItemAdapter = QuestionItemAdapter()
 

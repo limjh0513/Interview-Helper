@@ -44,11 +44,14 @@ class MyQuestionReplyViewModel(
     val videoName = MutableLiveData<String>()
     val videoTime = MutableLiveData<String>()
 
+    // 어디서 많이 본 플로우인 것 같은데...ㅎㅎ
+    // SignleLiveEvent로 Event 처리는 지양하고 함수로 처리해주는게 훨 나은거 같아요
     val onBackEvent = SingleLiveEvent<Unit>()
     val onAudioStartEvent = SingleLiveEvent<Unit>()
     val onAudioCompleteEvent = SingleLiveEvent<Unit>()
     val onVideoPlayEvent = SingleLiveEvent<Unit>()
 
+    // 이것도 더 좋은 방법이 있을 것 같은데 아이디어가 안 떠오르네요
     fun setData(question: Question, solution: Solution) {
         this.question = question
         this.solution = solution

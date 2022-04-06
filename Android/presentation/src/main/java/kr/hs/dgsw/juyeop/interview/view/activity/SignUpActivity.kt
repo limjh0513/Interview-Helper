@@ -20,6 +20,12 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
     override val viewModel: SignUpViewModel
         get() = getViewModel(viewModelFactory)
 
+    /*
+        아실 것 같긴한데, 안드로이드 화면에서 키보드 올라왔을 때 화면 가리는게 불편해서 찾아보니까 해결법이 있긴 하더라고요
+        이미 아셨던거면 말고 ㅎㅎ
+        https://inma06.tistory.com/68
+     */
+
     override fun observerViewModel() {
         with(viewModel) {
             onEmptyEvent.observe(this@SignUpActivity, Observer {

@@ -14,6 +14,11 @@ import java.util.*
 
 abstract class BaseActivity<VB: ViewDataBinding, VM: BaseViewModel>: DaggerAppCompatActivity() {
 
+    /*
+     mBinding이 private여서 UI 코드 부분(image 및 text 변경, 색깔 등)이 전체적으로 viewModel로 몰린 것 같은데
+     나중에 시간이 되신다면 설명 한번 부탁드립니다 ㅎㅎ
+     */
+
     private lateinit var mBinding: VB
     private lateinit var mViewModel: VM
 

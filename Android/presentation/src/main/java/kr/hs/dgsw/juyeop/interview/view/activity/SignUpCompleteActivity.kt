@@ -19,6 +19,7 @@ class SignUpCompleteActivity : BaseActivity<ActivitySignUpCompleteBinding, SignU
 
     override fun observerViewModel() {
         with(viewModel) {
+            // viewModel에서 하는게 onCancelEvent 받고 call해서 activity에서 보고 startActivity 해주는거 밖에 없는데 그러면 ViewModel은 크게 필요없지 않을까요?
             onCancelEvent.observe(this@SignUpCompleteActivity, Observer {
                 startActivityWithFinish(applicationContext, SignInActivity::class.java)
             })

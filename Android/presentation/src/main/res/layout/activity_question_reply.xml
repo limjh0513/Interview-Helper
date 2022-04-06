@@ -9,6 +9,9 @@
         <variable
             name="viewModel"
             type="kr.hs.dgsw.juyeop.interview.viewmodel.activity.QuestionReplyViewModel" />
+        <variable
+            name="activity"
+            type="kr.hs.dgsw.juyeop.interview.view.activity.QuestionReplyActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,6 +53,8 @@
                             android:tint="@android:color/white"
                             android:onClick="@{() -> viewModel.backEvent()}"
                             tools:ignore="ContentDescription" />
+                        // android:onClick="@{() -> activity.onBackPressed()}"
+                        // variable에 activity 추가해서 이런식으로 사용할 수 있어요!
 
                         <View
                             android:layout_width="0dp"

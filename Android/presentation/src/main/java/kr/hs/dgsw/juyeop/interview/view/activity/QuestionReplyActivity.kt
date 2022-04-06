@@ -25,7 +25,6 @@ class QuestionReplyActivity : BaseActivity<ActivityQuestionReplyBinding, Questio
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel.setQuestionData(intent.getSerializableExtra("question") as Question)
         viewModel.permissionSetting()
 
